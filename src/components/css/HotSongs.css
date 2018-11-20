@@ -1,0 +1,55 @@
+.banner {
+  position: relative;
+  padding-top: 38.9%;
+  padding-left: 20px; 
+  overflow: hidden;
+  background: url(//s3.music.126.net/m/s/img/hot_music_bg_3x.jpg?2bfefd3ba37eaffbd66b7d108b9de26a) no-repeat;
+  background-size: contain;
+}
+.banner:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  content: " ";
+  z-index: 1;
+  background-color: rgba(0,0,0,.2);
+}
+.hotpct {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  z-index: 2;
+  padding-left: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.hmsprt {
+  background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+  background-size: 166px 97px;
+}
+.hoticon {
+  width: 142px;
+  height: 67px;
+  background-position: -24px -30px;
+}
+.hottime {
+  margin-top: 10px;
+  color: hsla(0,0%,100%,.8);
+  font-size: 12px;
+  transform: scale(.91);
+  transform-origin: left top;
+}
+.sgitem {
+  height: 55px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: flex-start;
+}
