@@ -1,3 +1,6 @@
+.hot-songs {
+  background-color: #fcfcfd;
+}
 .banner {
   position: relative;
   padding-top: 38.9%;
@@ -49,7 +52,78 @@
 }
 .sgitem {
   height: 55px;
-  padding: 0 10px;
+  padding-left: 10px;
   display: flex;
   justify-content: flex-start;
+}
+.sgnumber {
+  width: 28px;
+  line-height: 55px;
+  color: #999;
+  font-size: 17px;
+}
+.sgnumber-highlight {
+  color:#df3436;
+}
+.sginfos {
+  width: 337px;
+  display: flex;
+  box-shadow:inset 0px -1px 0px 0px rgba(51, 51, 51, 0.05);
+}
+.sginfo {
+  width: calc(100% - 42px);
+  height: 55px;
+  padding: 6px 0;
+}
+.sgname {
+  color: rgb(51, 51, 51);
+  font-size: 17px;
+  line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sgname span {
+  color: rgb(136, 136, 136);
+}
+.sgalbum {
+  color: rgb(136, 136, 136);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sgitem .sghot {
+  display: inline-block;
+  width: 12px;
+  height: 8px;
+  margin-right: 4px;
+}
+.sgitem .sgplay {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+.sgitem .sgchply {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-position: -24px 0;
+}
+.hotdn {
+  height: 55px;
+  line-height: 55px;
+  text-align: center
+}
+.hotdn .hotview {
+  display: inline-block;
+  color: #999;
+  padding-right: 14px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNCAyMiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJtMSAxbDEwIDEwLTEwIDEwIi8+PC9zdmc+) 100% no-repeat;
+  background-size: 7px 12px;
+  font-size: 14px;
+}
+center img {
+  margin-top: 20vh;
+  width: 15px;
 }
