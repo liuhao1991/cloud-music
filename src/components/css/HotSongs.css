@@ -34,11 +34,7 @@
   right: 0;
   bottom: 0;
 }
-.hmsprt {
-  background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
-  background-size: 166px 97px;
-}
-.hoticon {
+.hmsprt.hoticon {
   width: 142px;
   height: 67px;
   background-position: -24px -30px;
@@ -49,66 +45,6 @@
   font-size: 12px;
   transform: scale(.91);
   transform-origin: left top;
-}
-.sgitem {
-  height: 55px;
-  padding-left: 10px;
-  display: flex;
-  justify-content: flex-start;
-}
-.sgnumber {
-  width: 28px;
-  line-height: 55px;
-  color: #999;
-  font-size: 17px;
-}
-.sgnumber-highlight {
-  color:#df3436;
-}
-.sginfos {
-  width: 337px;
-  display: flex;
-  box-shadow:inset 0px -1px 0px 0px rgba(51, 51, 51, 0.05);
-}
-.sginfo {
-  width: calc(100% - 42px);
-  height: 55px;
-  padding: 6px 0;
-}
-.sgname {
-  color: rgb(51, 51, 51);
-  font-size: 17px;
-  line-height: 25px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.sgname span {
-  color: rgb(136, 136, 136);
-}
-.sgalbum {
-  color: rgb(136, 136, 136);
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.sgitem .sghot {
-  display: inline-block;
-  width: 12px;
-  height: 8px;
-  margin-right: 4px;
-}
-.sgitem .sgplay {
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-}
-.sgitem .sgchply {
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  background-position: -24px 0;
 }
 .hotdn {
   height: 55px;

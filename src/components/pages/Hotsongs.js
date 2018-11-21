@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Song from '../common/Song';
 import http from '../js/api';
 import '../css/HotSongs.css';
 
@@ -28,7 +29,7 @@ class Hotsongs extends Component {
         <SongList tracks={ this.state.playlist.tracks } />
         { this.state.playlist.tracks ?
           <div className="hotdn">
-           <span class="hotview">查看完整榜单</span>
+           <span className="hotview">查看完整榜单</span>
           </div>
           :
           ''
@@ -52,48 +53,18 @@ const Banner = (props) => {
   )
 }
 
-const SongItem = (props) => {
-  const { song, index } = props
-  const i = index + 1
-  const order = i < 10 ? '0' + i : i
-  const songName = `${song.name}`
-  const Alia = () => {
-    return <span>{ song.alia.length ? '(' + song.alia.join(' / ') + ')' : ''}</span>
-  }
-  const singerList = song.ar.map(v => {
-    return v.name
-  })
-
-  const songInfo = singerList.join(' / ') + ' - ' + song.name
-
-  return (
-    <a className="sgitem" href={ song.id }>
-      <div className={ `sgnumber ${index < 3 ? 'sgnumber-highlight' : null}` }>{ order }</div>
-      <div className="sginfos">
-        <div className="sginfo">
-          <div className="sgname">
-            { songName }
-            <Alia />
-          </div>
-          <div className="sgalbum">
-            <i className="hmsprt sghot"></i>
-            <span>{ songInfo }</span>
-          </div>
-        </div>
-        <div className="sgplay">
-          <span className="hmsprt sgchply"></span>
-        </div>
-      </div>
-    </a>
-  )
-}
-
 const SongList = (props) => {
   const { tracks } = props
-  
   if (tracks) {
-    const songTracks = tracks.map((v, i) => {
-      return <SongItem song={ v } index={ i } key={ v.id }/>
+    const songTracks = tracks.map((item, index) => {
+      const id = item.id
+      const name = item.name
+      const album = item.al.name
+      const alia = item.alia.join(' / ')
+      const singerList = item.ar.map(v => v.name)
+      const singers = singerList.join(' / ')
+      const info = singers + ' - ' + album
+      return <Song name={ name } alia={ alia } index={ index } info={ info } id={ id } key={ id } showIndex={ true }/>
     })
     return (
       <div className="sglist">

@@ -4,7 +4,7 @@ class Search extends Component {
   render () {
     return (
       <div>
-        Search
+        1
       </div>
     )
   }
