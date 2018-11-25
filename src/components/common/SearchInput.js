@@ -3,20 +3,27 @@ import '../css/SearchInput.css';
 
 class SearchInput extends Component {
   handleChangeInput = e => {
-    const { inputSearchContent } = this.props;
+    const { inputContent } = this.props;
     const value = e.target.value;
-    inputSearchContent(value);
+    inputContent(value);
   }
 
   handleClearInput = () => {
-    const { inputSearchContent } = this.props;
-    inputSearchContent('');
+    const { inputContent } = this.props;
+    inputContent('');
+  }
+
+  handleSubmit = e => {
+    
+    e.preventDefault();
+    const { commitContent, input } = this.props;
+    commitContent(input);
   }
 
   render () {
     const { input } = this.props;
     return (
-      <form className="search-input">
+      <form className="search-input" onSubmit={ this.handleSubmit }>
         <div className="inputcover">
           <i className="u-svg u-svg-srch"></i>
           <input 

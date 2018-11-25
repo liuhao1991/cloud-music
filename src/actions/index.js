@@ -1,5 +1,5 @@
 import http from '../js/api';
-import { INIT_RECOMMEND, INIT_HOTSONGS, INIT_HOTITEMS, SEARCH_CONTENT } from './types';
+import { INIT_RECOMMEND, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT } from './types';
 
 export const initRecommend = () => {
   return (dispath) => {
@@ -29,7 +29,6 @@ export const initHotItems = () => {
   return (dispath) => {
     http.get('http://localhost:3001/api/hots')
       .then(res => {
-        console.log(res.data.result.hots)
         dispath({
           type: INIT_HOTITEMS,
           payload: res.data.result.hots
@@ -38,10 +37,20 @@ export const initHotItems = () => {
   }
 }
 
-export const inputSearchContent = (text) => {
+export const inputContent = (text) => {
   return (dispath) => {
     dispath({
-      type: SEARCH_CONTENT,
+      type: INPUT_CONTENT,
+      payload: text
+    });
+  }
+}
+
+export const commitContent = (text) => {
+  console.log(text)
+  return (dispath) => {
+    dispath({
+      type: COMMIT_CONTENT,
       payload: text
     });
   }

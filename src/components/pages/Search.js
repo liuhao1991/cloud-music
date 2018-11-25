@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { initHotItems, inputSearchContent } from '../../actions';
+import { initHotItems, inputContent, commitContent } from '../../actions';
 import SearchInput from '../common/SearchInput';
 import HotSearchList from '../common/HotSearchList';
 import '../css/Search.css';
@@ -13,11 +13,11 @@ class Search extends Component {
 
   render () {
     const { input, items } = this.props.search;
-    const { inputSearchContent } = this.props;
+    const { inputContent, commitContent } = this.props;
     return (
       <div className="">
-        <SearchInput input={ input } inputSearchContent={ inputSearchContent } />
-        <HotSearchList hotitems={ items } inputSearchContent={ inputSearchContent } />
+        <SearchInput input={ input } commitContent={ commitContent } inputContent={ inputContent } />
+        <HotSearchList hotitems={ items } commitContent={ commitContent } inputContent={ inputContent } />
       </div>
     )
   }
@@ -33,7 +33,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     initHotItems: bindActionCreators(initHotItems, dispatch),
-    inputSearchContent: bindActionCreators(inputSearchContent, dispatch)
+    inputContent: bindActionCreators(inputContent, dispatch),
+    commitContent: bindActionCreators(commitContent, dispatch),
   }
 }
 
