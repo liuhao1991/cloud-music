@@ -49,6 +49,21 @@ apiRoutes.get('/hotsongs', function(req, res) {
     })
 });
 
+apiRoutes.get('/hots', function(req, res) {
+  const params = {
+    params: '42Gh4x5kxQftKBGxCuSwWVNs5cbsfGQbrN6sIiMevWo=',
+    encSecKey: 'b5644a6159c26e28c8e1b5cfc1357cf7b4c5b248ef497a72e8acfdbfb2c0d0c9ef1a2dc52c6fef0d825447d604aa5de3ff422cbaa883ae33977090110ba2f001f2b2ed0b6764d757043fa51035718d014314b09d170a5be596e1bc5c3d921b58fda0258207b6c60e5427b503c97c609c0097e6c482bc013849f0773d0e2bdb2c',
+  };
+
+  http.post('search/hot', qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
 app.use('/api', apiRoutes);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

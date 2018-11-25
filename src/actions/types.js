@@ -1,0 +1,4 @@
+export const INIT_RECOMMEND = 'INIT_RECOMMEND';
+export const INIT_HOTSONGS = 'INIT_HOTSONGS';
+export const INIT_HOTITEMS = 'INIT_HOTITEMS';
+export const SEARCH_CONTENT = 'SEARCH_CONTENT';
