@@ -8,7 +8,9 @@ import '../css/HotSongs.css';
 class Hotsongs extends Component {
 
   componentDidMount () {
-    this.props.initHotsongs();
+    if (!Object.keys(this.props.hotsongs).length) {
+      this.props.initHotsongs();
+    }
   }
 
   render () {
@@ -16,12 +18,11 @@ class Hotsongs extends Component {
       <div className="hot-songs">
         <Banner updateTime={ this.props.hotsongs.updateTime } />
         <SongList tracks={ this.props.hotsongs.tracks } />
-        { this.props.hotsongs.tracks ?
-          <div className="hotdn">
-           <span className="hotview">查看完整榜单</span>
-          </div>
-          :
-          ''
+        { this.props.hotsongs.tracks 
+          ? <div className="hotdn">
+              <span className="hotview">查看完整榜单</span>
+            </div>
+          : ''
         }
       </div>
     )
@@ -69,7 +70,6 @@ const SongList = (props) => {
       </div>
     )
   }
-  
 }
 
 function mapStateToProps(state) {

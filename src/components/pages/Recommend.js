@@ -6,9 +6,11 @@ import SongList from '../common/SongList';
 import { initRecommend } from '../../actions';
 
 class Recommend extends Component {
-  
+
   componentDidMount () {
-    this.props.initRecommend();
+    if (!this.props.recommends.length) {
+      this.props.initRecommend();
+    }
   }
 
   render () {
