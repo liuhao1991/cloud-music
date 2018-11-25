@@ -34,7 +34,7 @@ apiRoutes.get('/newsong', function(req, res) {
 });
 
 
-apiRoutes.get('/detail', function(req, res) {
+apiRoutes.get('/hotsongs', function(req, res) {
   const params = {
     params: 'i5+trn+8EKLzTmI8rHrlG7uq0Jk0TYkdrHE2nZ4gn/a9nqIie6iW8YhypI0Qi09t',
     encSecKey: 'cfbb3c121690d39f001c613b487490ef4968b0158f67a4fcfca32a22f9f20c58c8b8b3ef7817148b04460a0a1507010094f76c96b28f47af9ea636b71296272d4a1b8ce050a674390f9c615e3e942d85b7d400bd2ebff75dfa35951175b87f8ea26bd6551d22452f400d9713f65295e48fa4561293f1f7342b884e5f601883c8',

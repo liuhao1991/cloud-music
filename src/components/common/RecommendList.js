@@ -1,5 +1,5 @@
 import React from 'react';
-import recommends from '../js/recommends';
+import recommends from '../../js/recommends';
 import '../css/RecommendItem.css';
 
 const playCount = (count) => {

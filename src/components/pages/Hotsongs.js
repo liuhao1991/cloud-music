@@ -1,33 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { initHotsongs } from '../../actions';
 import Song from '../common/Song';
-import http from '../js/api';
 import '../css/HotSongs.css';
 
 class Hotsongs extends Component {
-  constructor() {
-    super();
-    this.state = {
-      playlist: {}
-    };
+
+  componentDidMount () {
+    this.props.initHotsongs();
   }
 
-  fetchData () {
-    http.get('http://localhost:3001/api/detail')
-    .then(res => {
-      this.setState({
-        playlist: res.data.playlist
-      });
-    });
-  }
-  componentDidMount () {
-    this.fetchData();
-  }
   render () {
     return (
       <div className="hot-songs">
-        <Banner updateTime={ this.state.playlist.updateTime } />
-        <SongList tracks={ this.state.playlist.tracks } />
-        { this.state.playlist.tracks ?
+        <Banner updateTime={ this.props.hotsongs.updateTime } />
+        <SongList tracks={ this.props.hotsongs.tracks } />
+        { this.props.hotsongs.tracks ?
           <div className="hotdn">
            <span className="hotview">查看完整榜单</span>
           </div>
@@ -83,4 +72,16 @@ const SongList = (props) => {
   
 }
 
-export default Hotsongs;
+function mapStateToProps(state) {
+  return {
+    hotsongs: state.hotsongs
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    initHotsongs: bindActionCreators(initHotsongs, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hotsongs);

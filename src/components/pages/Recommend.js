@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import RecommendList from '../common/RecommendList';
 import SongList from '../common/SongList';
-import http from '../js/api';
+import { initRecommend } from '../../actions';
 
 class Recommend extends Component {
-  constructor() {
-    super();
-    this.state = {
-      songs: []
-    };
-  }
   
-  fetchData() {
-    http.get('http://localhost:3001/api/newsong')
-      .then(res => {
-        this.setState({
-          songs: res.data.result
-        });
-      });
-  }
-
   componentDidMount () {
-    this.fetchData();
+    this.props.initRecommend();
   }
 
   render () {
@@ -34,7 +21,7 @@ class Recommend extends Component {
         <div style={ styles.sectionTitle }>
           最新音乐
         </div>
-        <SongList songs={ this.state.songs } />
+        <SongList songs={ this.props.recommends } />
         <div style={ styles.footer }>
         </div>
       </div>
@@ -67,4 +54,16 @@ const styles = {
   }
 }
 
-export default Recommend;
+function mapStateToProps(state) {
+  return {
+    recommends: state.recommends
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    initRecommend: bindActionCreators(initRecommend, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recommend);
