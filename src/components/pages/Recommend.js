@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { initRecommend, initPlaylist } from '../../actions';
 import RecommendList from '../common/RecommendList';
 import SongList from '../common/SongList';
-import { initRecommend } from '../../actions';
 
 class Recommend extends Component {
 
   componentDidMount () {
-    if (!this.props.recommends.length) {
+    const { recommends, playlist } = this.props.recommends;
+    if (!recommends.length) {
       this.props.initRecommend();
+    }
+    if (!playlist.length) {
+      this.props.initPlaylist();
     }
   }
 
   render () {
+    const { recommends, playlist } = this.props.recommends;
     return (
       <div style={ styles.recommend }>
         <div style={ styles.sectionTitle }>
           推荐歌单
         </div>
-        <RecommendList/>
+        <RecommendList playlist={playlist}/>
         <div style={ styles.sectionTitle }>
           最新音乐
         </div>
-        <SongList songs={ this.props.recommends } />
+        <SongList songs={ recommends } />
         <div style={ styles.footer }>
         </div>
       </div>
@@ -64,7 +69,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    initRecommend: bindActionCreators(initRecommend, dispatch)
+    initRecommend: bindActionCreators(initRecommend, dispatch),
+    initPlaylist: bindActionCreators(initPlaylist, dispatch)
   }
 }
 

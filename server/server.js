@@ -19,6 +19,21 @@ var http = axios.create({
   }
 });
 
+// 推荐歌单
+apiRoutes.get('/v1', function(req, res) {
+  const params = {
+    params: '5u7jLzq0clpj4iqaFRCL7Dw9Lz94KwyuzXiKpRjRikI=',
+    encSecKey: '83685aac276cecd274b21b1fd99d6bc369945cb2db80e3eee611876a4f308e87a1f11eb34d6b7d03b2c640f4a9baf30667a1de254cac011bd54e53c4347b4fbb2d86cd2600803b03fbd3ea1ced4ce1aa042994b221a90384af61340edd15a8f02174fecdad80062abe40581cc09d8176e02d243a06d4a2a2592bbe827c315e3b',
+  };
+  http.post('personalized/playlist/v1', qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
 apiRoutes.get('/newsong', function(req, res) {
   const params = {
     params: 'rRzoTyT4PAWG+ZPWME72x/694n9MMzfVpT1TLnmzBM0=',

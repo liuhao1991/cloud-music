@@ -27,10 +27,10 @@
   color: rgb(51, 51, 51);
   font-size: 13px;
   padding: 6px 2px 0 6px;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.2;
+  height: 36px;
+  text-overflow: ellipsis;
 }
 .recommend-shadow {
   width: 100%;

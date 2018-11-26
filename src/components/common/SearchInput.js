@@ -14,7 +14,6 @@ class SearchInput extends Component {
   }
 
   handleSubmit = e => {
-    
     e.preventDefault();
     const { commitContent, input } = this.props;
     commitContent(input);

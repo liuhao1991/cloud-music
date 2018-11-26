@@ -1,4 +1,5 @@
 export const INIT_RECOMMEND = 'INIT_RECOMMEND';
+export const INIT_PLAYLIST = 'INIT_PLAYLIST';
 export const INIT_HOTSONGS = 'INIT_HOTSONGS';
 export const INIT_HOTITEMS = 'INIT_HOTITEMS';
 export const INPUT_CONTENT = 'INPUT_CONTENT';

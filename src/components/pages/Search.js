@@ -8,7 +8,9 @@ import '../css/Search.css';
 
 class Search extends Component {
   componentDidMount () {
-    this.props.initHotItems();
+    if (!this.props.search.items.length) {
+      this.props.initHotItems();
+    }
   }
 
   render () {
@@ -22,7 +24,6 @@ class Search extends Component {
     )
   }
 }
-
 
 const mapStateToProps = state => {
   return {
