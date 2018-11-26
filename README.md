@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-### `npm server`
+### `npm run serve`
 
 Bootstrap app's server [http://localhost:3001](http://localhost:3001) for http request
 
