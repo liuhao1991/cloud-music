@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/Song.css';
+import '../../assets/css/Song.css';
 
 const Song = (props) => {
   const { id, name, alia, index, info, showIndex } = props

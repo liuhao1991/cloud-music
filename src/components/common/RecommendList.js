@@ -1,5 +1,6 @@
 import React from 'react';
-import '../css/RecommendItem.css';
+import { Link } from 'react-router-dom';
+import '../../assets/css/RecommendItem.css';
 
 const playCount = (count) => {
   return (count / 10000).toFixed(1) + '万';
@@ -8,7 +9,7 @@ const playCount = (count) => {
 const RecommendItem = (props) => {
   const { item } = props;
   return (
-    <a className="recommend-item" href={ '/m/playlist?id=' + item.id }>
+    <Link className="recommend-item" to={ '/playlist/' + item.id }>
       <div className="recommend-img">
         <img src={ item.picUrl } alt={ item.name }/>
         <div className="recommend-shadow">
@@ -18,7 +19,7 @@ const RecommendItem = (props) => {
       <div className="recommend-name">
         { item.name }
       </div>
-    </a>
+    </Link>
   )
 }
 

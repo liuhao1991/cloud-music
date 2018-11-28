@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/SearchInput.css';
+import '../../assets/css/SearchInput.css';
 
 class SearchInput extends Component {
   handleChangeInput = e => {

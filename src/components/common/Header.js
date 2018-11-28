@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
-import '../css/Header.css';
+import { NavLink, withRouter } from "react-router-dom";
+import '../../assets/css/Header.css';
 
 class Header extends Component {
   render () {
-    return (
-      <div className="fixed-bar">
-        <Topbar />
-        <Tabbar />
-      </div>
-    )
+    const path = this.props.location.pathname
+    if (path === '/' || path === '/hotsongs' || path === '/search') {
+      return (
+        <div className='fixed-bar'>
+          <Topbar></Topbar>
+          <Tabbar></Tabbar>
+        </div>
+      )
+    }
+    return (<i></i>)
   }
 }
 
@@ -52,16 +56,16 @@ const Tabbar = () => {
   return (
     <div className="tab-bar">
       <div className="tab-bar-item">
-        <NavLink exact className="tab-bar-text" to='/'>推荐音乐</NavLink>
+        <NavLink exact className="tab-bar-text" activeClassName="active" to='/'>推荐音乐</NavLink>
       </div>
       <div className="tab-bar-item">
-        <NavLink exact className="tab-bar-text" to='/hotsongs'>热歌榜</NavLink>
+        <NavLink exact className="tab-bar-text" activeClassName="active" to='/hotsongs'>热歌榜</NavLink>
       </div>
       <div className="tab-bar-item">
-        <NavLink exact className="tab-bar-text" to='/search'>搜索</NavLink>
+        <NavLink exact className="tab-bar-text" activeClassName="active" to='/search'>搜索</NavLink>
       </div>
     </div>
   )
 }
 
-export default Header;
+export default withRouter(Header);

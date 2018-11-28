@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { initHotsongs } from '../../actions';
 import Song from '../common/Song';
-import '../css/HotSongs.css';
+import '../../assets/css/HotSongs.css';
 
 class Hotsongs extends Component {
 
@@ -15,15 +15,17 @@ class Hotsongs extends Component {
 
   render () {
     return (
-      <div className="hot-songs">
-        <Banner updateTime={ this.props.hotsongs.updateTime } />
-        <SongList tracks={ this.props.hotsongs.tracks } />
-        { this.props.hotsongs.tracks 
-          ? <div className="hotdn">
-              <span className="hotview">查看完整榜单</span>
-            </div>
-          : ''
-        }
+      <div className="tab-content">
+        <div className="hot-songs">
+          <Banner updateTime={ this.props.hotsongs.updateTime } />
+          <SongList tracks={ this.props.hotsongs.tracks } />
+          { this.props.hotsongs.tracks 
+            ? <div className="hotdn">
+                <span className="hotview">查看完整榜单</span>
+              </div>
+            : ''
+          }
+        </div>
       </div>
     )
   }

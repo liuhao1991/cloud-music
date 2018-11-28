@@ -2,6 +2,7 @@ var express = require('express');
 var axios = require('axios');
 var cors = require('cors');
 var qs = require('querystring');
+var crypto = require('./crypto');
 
 var app = express();
 app.use(cors());
@@ -78,6 +79,34 @@ apiRoutes.get('/hots', function(req, res) {
       console.log(err)
     })
 });
+
+apiRoutes.get('/playlist', function(req, res) {
+  var data = {
+    id: req.query.id
+  };
+  const params = crypto(data);
+  http.post('v3/playlist/detail', qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
+apiRoutes.get('/playlist/comments/', function(req, res) {
+  var data = {
+    rid: req.query.rid
+  };
+  const params = crypto(data);
+  http.post(`v1/resource/comments/A_PL_0_${req.query.rid}`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 
 app.use('/api', apiRoutes);
 

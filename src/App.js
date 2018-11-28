@@ -4,6 +4,7 @@ import Header from './components/common/Header';
 import Recommend from './components/pages/Recommend';
 import Hotsongs from './components/pages/Hotsongs';
 import Search from './components/pages/Search';
+import Playlist from './components/pages/Playlist';
 import './App.css';
 
 class App extends Component {
@@ -12,11 +13,10 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <div className="tab-content">
-            <Route exact path="/" component={Recommend} />
-            <Route path="/hotsongs" component={Hotsongs} />
-            <Route path="/search" component={Search} />
-          </div>
+          <Route exact path="/" component={ Recommend } />
+          <Route path="/hotsongs" component={ Hotsongs } />
+          <Route path="/search" component={ Search } />
+          <Route path="/playlist/:id" component={ Playlist } />
         </div>
       </Router>
     );

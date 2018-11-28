@@ -20,16 +20,18 @@ class Recommend extends Component {
   render () {
     const { recommends, playlist } = this.props.recommends;
     return (
-      <div style={ styles.recommend }>
-        <div style={ styles.sectionTitle }>
-          推荐歌单
-        </div>
-        <RecommendList playlist={playlist}/>
-        <div style={ styles.sectionTitle }>
-          最新音乐
-        </div>
-        <SongList songs={ recommends } />
-        <div style={ styles.footer }>
+      <div className="tab-content">
+        <div style={ styles.recommend }>
+          <div style={ styles.sectionTitle }>
+            推荐歌单
+          </div>
+          <RecommendList playlist={playlist}/>
+          <div style={ styles.sectionTitle }>
+            最新音乐
+          </div>
+          <SongList songs={ recommends } />
+          <div style={ styles.footer }>
+          </div>
         </div>
       </div>
     )

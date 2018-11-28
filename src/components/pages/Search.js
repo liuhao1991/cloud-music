@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { initHotItems, inputContent, commitContent } from '../../actions';
 import SearchInput from '../common/SearchInput';
 import HotSearchList from '../common/HotSearchList';
-import '../css/Search.css';
+import '../../assets/css/Search.css';
 
 class Search extends Component {
   componentDidMount () {
@@ -17,9 +17,11 @@ class Search extends Component {
     const { input, items } = this.props.search;
     const { inputContent, commitContent } = this.props;
     return (
-      <div className="">
-        <SearchInput input={ input } commitContent={ commitContent } inputContent={ inputContent } />
-        <HotSearchList hotitems={ items } commitContent={ commitContent } inputContent={ inputContent } />
+      <div className="tab-content">
+        <div className="">
+          <SearchInput input={ input } commitContent={ commitContent } inputContent={ inputContent } />
+          <HotSearchList hotitems={ items } commitContent={ commitContent } inputContent={ inputContent } />
+        </div>
       </div>
     )
   }
