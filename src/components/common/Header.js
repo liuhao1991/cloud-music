@@ -13,7 +13,9 @@ class Header extends Component {
         </div>
       )
     }
-    return (<i></i>)
+    return (
+      <i></i>
+    )
   }
 }
 
