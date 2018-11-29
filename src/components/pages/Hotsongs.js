@@ -32,8 +32,8 @@ class Hotsongs extends Component {
 }
 
 const Banner = (props) => {
-  const { updateTime } =  props
-  const updateDate = new Date(props.updateTime)
+  const { updateTime } =  props;
+  const updateDate = new Date(props.updateTime);
   const m = updateDate.getMonth() + 1;
   const d = updateDate.getDate() >= 10 ? updateDate.getDate() : '0' + updateDate.getDate();
   return (
@@ -51,14 +51,23 @@ const SongList = (props) => {
   let songTracks;
   if (tracks) {
     songTracks = tracks.map((item, index) => {
-      const id = item.id
-      const name = item.name
-      const album = item.al.name
-      const alia = item.alia.join(' / ')
-      const singerList = item.ar.map(v => v.name)
-      const singers = singerList.join(' / ')
-      const info = singers + ' - ' + album
-      return <Song name={ name } alia={ alia } index={ index } info={ info } id={ id } key={ id } showIndex={ true }/>
+      const id = item.id;
+      const name = item.name;
+      const album = item.al.name;
+      const alia = item.alia.join(' / ');
+      const singerList = item.ar.map(v => v.name);
+      const singers = singerList.join(' / ');
+      const info = singers + ' - ' + album;
+      const showIndex = true;
+      const songInfo = {
+        name,
+        alia,
+        index,
+        info,
+        id,
+        showIndex
+      };
+      return <Song song={ songInfo } key={ id } />
     })
   } else {
     songTracks = <center>

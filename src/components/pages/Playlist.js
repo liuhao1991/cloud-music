@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import http from '../../js/api';
+import http from '../../js/http';
 
 class Playlist extends Component {
 	componentDidMount () {

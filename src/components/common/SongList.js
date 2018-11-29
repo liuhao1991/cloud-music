@@ -2,16 +2,25 @@ import React from 'react';
 import Song from '../common/Song';
 
 const SongList = (props) => {
-  const songs = props.songs
+  const { songs } = props;
   const list = songs.map((item, index) => {
-    const { song, id, name } = item
-    const { artists, alias, album } = song
-    const singerList = artists.map(v => v.name)
-    const singers = singerList.join(' / ')
-    const alb = album.name
-    const info = singers + ' - ' + alb
-    const alia = alias.join(' / ')
-    return <Song name={ name } alia={ alia } index={ index } info={ info } id={ id } key={ id } showIndex={ false }/>
+    const { song, id, name } = item;
+    const { artists, alias, album } = song;
+    const singerList = artists.map(v => v.name);
+    const singers = singerList.join(' / ');
+    const alb = album.name;
+    const info = singers + ' - ' + alb;
+    const alia = alias.join(' / ');
+    const showIndex = false;
+    const songInfo = {
+      name,
+      alia,
+      index,
+      info,
+      id,
+      showIndex
+    };
+    return <Song song={ songInfo } key={ id }/>
   });
 
   return (

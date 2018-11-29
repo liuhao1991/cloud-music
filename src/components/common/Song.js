@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/css/Song.css';
 
 const Song = (props) => {
-  const { id, name, alia, index, info, showIndex } = props
+  const { id, name, alia, index, info, showIndex } = props.song
   const order = index < 9 ? '0' + (index + 1) : index + 1
   return (
     <a className="sgitem" href={ '/' + id }>
@@ -36,4 +36,4 @@ const Song = (props) => {
   )
 }
 
-export default Song
+export default Song;

@@ -1,4 +1,4 @@
-import http from '../js/api';
+import http from '../js/http';
 import { INIT_RECOMMEND, INIT_PLAYLIST, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT } from './types';
 
 export const initRecommend = () => {

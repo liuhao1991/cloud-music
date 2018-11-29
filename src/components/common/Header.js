@@ -4,7 +4,7 @@ import '../../assets/css/Header.css';
 
 class Header extends Component {
   render () {
-    const path = this.props.location.pathname
+    const path = this.props.location.pathname;
     if (path === '/' || path === '/hotsongs' || path === '/search') {
       return (
         <div className='fixed-bar'>
