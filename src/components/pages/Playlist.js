@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PlaylistBanner from '../common/PlaylistBanner';
 import PlaylistIntro from '../common/PlaylistIntro';
 import PylistList from '../common/PylistList';
 import CommentList from '../common/CommentList';
@@ -46,6 +47,7 @@ class Playlist extends Component {
 				{
 					Object.keys(this.state.playlist).length
 					? <div>
+							<PlaylistBanner playlist={ this.state.playlist }/>
 							{ this.state.playlist.description
 							? <PlaylistIntro playlist={ this.state.playlist } />
 							: '' }
@@ -56,7 +58,7 @@ class Playlist extends Component {
 				{
 					Object.keys(this.state.comments).length
 					? <CommentList comments={ this.state.comments }/>
-					: <Loading />
+					: ''
 				}
 			</div>
 		)

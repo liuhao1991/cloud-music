@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../assets/css/Song.css';
 
 const Song = (props) => {
   const { id, name, alia, index, info, showIndex, highlight } = props.song
   const order = highlight && index < 9 ? '0' + (index + 1) : index + 1
   return (
-    <a className="sgitem" href={ '/' + id }>
+    <Link className="sgitem" to={ '/song/' + id }>
       {
         showIndex
         ? <div className={ `sgfl ${index < 3 && highlight ? 'sgfl-cred' : null}` }>
@@ -32,7 +33,7 @@ const Song = (props) => {
           <span className="hmsprt sgchply"></span>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
 

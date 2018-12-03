@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../assets/css/RecommendItem.css';
 
 const playCount = (count) => {
-  return (count / 10000).toFixed(1) + '万';
+  return Number((count / 10000).toFixed(1)) + '万';
 }
 
 const RecommendItem = (props) => {
