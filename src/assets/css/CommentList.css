@@ -31,7 +31,7 @@
 }
 .m-comments .cmt_item .cmt_head+.cmt_wrap {
   padding-left: 0;
-  border-bottom: 0.5px solid rgba(0,0,0,.05);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
 }
 .m-comments .cmt_item .cmt_wrap {
   padding-right: 10px;
@@ -127,5 +127,5 @@
   line-height: 21px;
 }
 .cmt_replied {
-  border: 0.5px solid rgba(0,0,0,.05);
+  border: 0.5px solid rgba(0, 0, 0, 0.03);
 }

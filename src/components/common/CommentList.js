@@ -40,22 +40,22 @@ const Comment = props => {
         <div className="cmt_content">
           {
             cmt.beReplied.length
-            ? <span class="cmt_text">
+            ? <span className="cmt_text">
                 回复
                 <a className="at" href={ cmt.beReplied[0].user.userId }>{ '@' + cmt.beReplied[0].user.nickname }：</a>
               </span>
             : ''
           }
-          <span class="cmt_text">
+          <span className="cmt_text">
             { cmt.content }
           </span>
         </div>
         {
           cmt.beReplied.length
-          ? <div class="cmt_replied">
-              <span class="cmt_replied_user">{ '@' + cmt.beReplied[0].user.nickname }：</span>
-              <span class="cmt_replied_cnt">
-                <span class="cmt_text">{ cmt.beReplied[0].content }</span>
+          ? <div className="cmt_replied">
+              <span className="cmt_replied_user">{ '@' + cmt.beReplied[0].user.nickname }：</span>
+              <span className="cmt_replied_cnt">
+                <span className="cmt_text">{ cmt.beReplied[0].content }</span>
               </span>
             </div>
           : ''
