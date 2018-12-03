@@ -2,13 +2,13 @@ import React from 'react';
 import '../../assets/css/Song.css';
 
 const Song = (props) => {
-  const { id, name, alia, index, info, showIndex } = props.song
-  const order = index < 9 ? '0' + (index + 1) : index + 1
+  const { id, name, alia, index, info, showIndex, highlight } = props.song
+  const order = highlight && index < 9 ? '0' + (index + 1) : index + 1
   return (
     <a className="sgitem" href={ '/' + id }>
       {
         showIndex
-        ? <div className={ `sgfl ${index < 3 ? 'sgfl-cred' : null}` }>
+        ? <div className={ `sgfl ${index < 3 && highlight ? 'sgfl-cred' : null}` }>
             { order }
           </div>
         : ''

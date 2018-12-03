@@ -1,30 +1,63 @@
 import React, { Component } from 'react';
+import PlaylistIntro from '../common/PlaylistIntro';
+import PylistList from '../common/PylistList';
+import CommentList from '../common/CommentList';
+import Loading from '../common/Loading';
 import http from '../../js/http';
 
 class Playlist extends Component {
-	componentDidMount () {
-		const id = this.props.match.params.id
+	state = {
+		playlist: {},
+		comments: {}
+	}
+
+	fetchPlaylist () {
+		const id = this.props.match.params.id;
 		const data = {
-			id: id,
-			offset: '0',
-			total: false,
-			n: 20,
-			limit: 20,
-			csrf_token: ''
+			id: id
 		};
 		http.get('http://localhost:3001/api/playlist', {params: data})
       .then(res => {
-        console.log(res.data)
+        this.setState({
+					playlist: res.data.playlist
+				})
       })
-    http.get('http://localhost:3001/api/playlist/comments', {params: Object.assign(data, {rid: id})})
+	}
+
+	fetchComments () {
+		const rid = this.props.match.params.id;
+		const data = {
+			rid
+		};
+		http.get('http://localhost:3001/api/playlist/comments', {params: data})
       .then(res => {
-        console.log(res.data)
+        this.setState({
+					comments: res.data
+				})
       })
+	}
+	componentDidMount () {
+		this.fetchPlaylist();
+		this.fetchComments();
 	}
 	render () {
 		return (
-			<div>
-				1
+			<div className="cmt-list-wrapper">
+				{
+					Object.keys(this.state.playlist).length
+					? <div>
+							{ this.state.playlist.description
+							? <PlaylistIntro playlist={ this.state.playlist } />
+							: '' }
+							<PylistList playlist={ this.state.playlist } />
+						</div>
+					: <Loading />
+				}
+				{
+					Object.keys(this.state.comments).length
+					? <CommentList comments={ this.state.comments }/>
+					: <Loading />
+				}
 			</div>
 		)
 	}
