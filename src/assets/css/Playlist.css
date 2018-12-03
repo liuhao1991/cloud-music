@@ -1,0 +1,29 @@
+.m-playlist {
+  background-color: #f8f8f8;
+  min-height: 100%;
+}
+.u-plhead {
+  position: relative;
+  padding: 30px 10px 30px 15px;
+  overflow: hidden;
+}
+.u-plhead .plhead_bg:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  content: " ";
+  background-color: rgba(0,0,0,.25);
+}
+.u-plhead .plhead_bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  filter: blur(20px);
+  transform: scale(1.5);
+}
+.plhead_wrap {
+  height: 126px;
+}
