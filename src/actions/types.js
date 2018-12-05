@@ -4,3 +4,4 @@ export const INIT_HOTSONGS = 'INIT_HOTSONGS';
 export const INIT_HOTITEMS = 'INIT_HOTITEMS';
 export const INPUT_CONTENT = 'INPUT_CONTENT';
 export const COMMIT_CONTENT = 'COMMIT_CONTENT';
+export const INIT_HISTORY = 'INIT_HISTORY';

@@ -1,4 +1,4 @@
-import { INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT } from '../actions/types';
+import { INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT, INIT_HISTORY } from '../actions/types';
 
 const search = (state = {
   input: '',
@@ -13,9 +13,14 @@ const search = (state = {
     case COMMIT_CONTENT:
       const inputList = state.inputList;
       if (inputList.indexOf(action.payload) === -1) {
-        return {...state, ...{inputList: [...inputList, action.payload]} };
+        inputList.unshift(action.payload)
+        localStorage.setItem('search_history', inputList)
+        return {...state, ...{inputList: [...inputList]} };
       }
       return state;
+    case INIT_HISTORY:
+      const searchHistory = localStorage.getItem('search_history') ? JSON.parse(localStorage.getItem('search_history')) : [];
+      return {...state, ...{inputList: [...searchHistory]} };
     default:
       return state;
   }

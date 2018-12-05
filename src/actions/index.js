@@ -1,6 +1,6 @@
 import http from '../js/http';
-import { INIT_RECOMMEND, INIT_PLAYLIST, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT } from './types';
-
+import { INIT_RECOMMEND, INIT_PLAYLIST, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT, INIT_HISTORY } from './types';
+// 最新音乐初始化
 export const initRecommend = () => {
   return (dispath) => {
     http.get('http://localhost:3001/api/newsong')
@@ -12,7 +12,7 @@ export const initRecommend = () => {
       })
   }
 };
-
+// 推荐歌单初始化
 export const initPlaylist = () => {
   return (dispath) => {
     http.get('http://localhost:3001/api/v1')
@@ -24,7 +24,7 @@ export const initPlaylist = () => {
       })
   }
 };
-
+// 热门歌曲初始化
 export const initHotsongs = () => {
   return (dispath) => {
     http.get('http://localhost:3001/api/hotsongs')
@@ -36,7 +36,7 @@ export const initHotsongs = () => {
       })
   }
 }
-
+// 热门搜索标签初始化
 export const initHotItems = () => {
   return (dispath) => {
     http.get('http://localhost:3001/api/hots')
@@ -48,7 +48,7 @@ export const initHotItems = () => {
       })
   }
 }
-
+// 搜索框输入
 export const inputContent = (text) => {
   return (dispath) => {
     dispath({
@@ -57,13 +57,21 @@ export const inputContent = (text) => {
     });
   }
 }
-
+// 提交搜索关键词
 export const commitContent = (text) => {
   console.log(text)
   return (dispath) => {
     dispath({
       type: COMMIT_CONTENT,
       payload: text
+    });
+  }
+}
+// 初始化搜索历史
+export const initHistory = () => {
+  return (dispath) => {
+    dispath({
+      type: INIT_HISTORY
     });
   }
 }
