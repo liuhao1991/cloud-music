@@ -1,10 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../assets/css/CommentList.css';
 const CommentList = props => {
   const { comments, hotComments, total } = props.comments;
   return (
     <div>
-      <Comments comments={ hotComments } title={ '精彩评论' } />
+      {
+        hotComments.length
+        ? <Comments comments={ hotComments } title={ '精彩评论' } />
+        : ''
+      }
       <Comments comments={ comments } title={ '最新评论' + total } />
     </div>
   )
@@ -16,15 +21,15 @@ const Comment = props => {
   return (
     <div className="cmt_item">
       <div className="cmt_head">
-        <a className="userphoto" href={ cmt.user.userId }>
+        <Link className="userphoto" to={ `/user/${cmt.user.userId}` }>
           <img src={ cmt.user.avatarUrl } alt=""/>
-        </a>
+        </Link>
       </div>
       <div className="cmt_wrap f-bd f-bd-btm">
         <div className="cmt_header">
           <div className="cmt_meta">
             <span className="cmt_user">
-              <a className="nickname" href={ `/user/home?nickname=${cmt.user.nickname}` }>{ cmt.user.nickname }</a>
+              <Link className="nickname" to={ `/user/${cmt.user.userId}` }>{ cmt.user.nickname }</Link>
             </span>
             <div className="cmt_time">
               <span>{ time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日'}</span>
@@ -42,7 +47,7 @@ const Comment = props => {
             cmt.beReplied.length
             ? <span className="cmt_text">
                 回复
-                <a className="at" href={ cmt.beReplied[0].user.userId }>{ '@' + cmt.beReplied[0].user.nickname }：</a>
+                <Link className="at" to={ `/user/${cmt.beReplied[0].user.userId}` }>{ '@' + cmt.beReplied[0].user.nickname }：</Link>
               </span>
             : ''
           }

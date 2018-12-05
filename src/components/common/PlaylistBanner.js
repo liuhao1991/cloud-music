@@ -21,7 +21,7 @@ const PlaylistBanner = props => {
                 <img className="u-img" alt="" src={ creator.avatarUrl } />
                 <span className="ava-icon ava-icon-daren "></span>
               </div>
-              mayuko然
+              { creator.nickname }
             </Link>
           </div>
         </div>

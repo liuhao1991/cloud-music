@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { initRecommend, initPlaylist } from '../../actions';
 import RecommendList from '../common/RecommendList';
 import SongList from '../common/SongList';
+import Footer from '../common/Footer';
 
 class Recommend extends Component {
 
@@ -30,8 +31,7 @@ class Recommend extends Component {
             最新音乐
           </div>
           <SongList songs={ recommends } />
-          <div style={ styles.footer }>
-          </div>
+          <Footer />
         </div>
       </div>
     )
@@ -52,14 +52,6 @@ const styles = {
     fontSize: '17px',
     borderLeft: '2px solid rgb(211, 58, 49)',
     color: 'rgb(51, 51, 51)',
-  },
-  footer: {
-    height: '200px',
-    position: 'relative',
-    paddingTop: '53.3%',
-    marginTop: '4px',
-    background: 'url(//s3.music.126.net/m/s/img/recommand_bg_2x.png?d045faf…) no-repeat',
-    backgroundSize: 'contain',
   }
 }
 
