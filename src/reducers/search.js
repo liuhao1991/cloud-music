@@ -14,7 +14,7 @@ const search = (state = {
       const inputList = state.inputList;
       if (inputList.indexOf(action.payload) === -1) {
         inputList.unshift(action.payload)
-        localStorage.setItem('search_history', inputList)
+        localStorage.setItem('search_history', JSON.stringify(inputList))
         return {...state, ...{inputList: [...inputList]} };
       }
       return state;
