@@ -3,20 +3,20 @@ import '../../assets/css/SearchInput.css';
 
 class SearchInput extends Component {
   handleChangeInput = e => {
-    const { inputContent } = this.props;
+    const { inputSearch } = this.props;
     const value = e.target.value;
-    inputContent(value);
+    inputSearch(value);
   }
 
   handleClearInput = () => {
-    const { inputContent } = this.props;
-    inputContent('');
+    const { inputSearch } = this.props;
+    inputSearch('');
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const { commitContent, input } = this.props;
-    commitContent(input);
+    const { commitSearch, input } = this.props;
+    commitSearch(input);
   }
 
   render () {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { initHotItems, inputContent, commitContent, initHistory } from '../../actions';
+import { initHotItems, inputSearch, commitSearch, initHistory, deleteHistory } from '../../actions';
 import SearchInput from '../common/SearchInput';
 import SearchDefault from '../common/SearchDefault';
 import '../../assets/css/Search.css';
@@ -18,11 +18,11 @@ class Search extends Component {
 
   render () {
     const { input, items, inputList } = this.props.search;
-    const { inputContent, commitContent } = this.props;
+    const { inputSearch, commitSearch, deleteHistory } = this.props;
     return (
       <div className="tab-content">
-        <SearchInput input={ input } commitContent={ commitContent } inputContent={ inputContent } />
-        <SearchDefault items={ items } inputList={ inputList } commitContent={ commitContent } inputContent={ inputContent } />
+        <SearchInput input={ input } commitSearch={ commitSearch } inputSearch={ inputSearch } />
+        <SearchDefault items={ items } inputList={ inputList } commitSearch={ commitSearch } inputSearch={ inputSearch } deleteHistory={ deleteHistory }/>
       </div>
     )
   }
@@ -37,9 +37,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     initHotItems: bindActionCreators(initHotItems, dispatch),
-    inputContent: bindActionCreators(inputContent, dispatch),
-    commitContent: bindActionCreators(commitContent, dispatch),
-    initHistory: bindActionCreators(initHistory, dispatch)
+    inputSearch: bindActionCreators(inputSearch, dispatch),
+    commitSearch: bindActionCreators(commitSearch, dispatch),
+    initHistory: bindActionCreators(initHistory, dispatch),
+    deleteHistory: bindActionCreators(deleteHistory, dispatch)
   }
 }
 

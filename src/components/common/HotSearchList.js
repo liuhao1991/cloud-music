@@ -3,24 +3,19 @@ import '../../assets/css/HotSearchList.css';
 
 const HotSearchItem = (props) => {
   const { first } = props.item;
-  const { inputContent, commitContent } = props;
-
-  const handleClick = (value) => {
-    inputContent(value);
-    commitContent(value);
-  }
-
+  const { commitSearch } = props;
+  
   return (
-    <div className="hot-search-item" onClick={() => handleClick(first) }>
+    <div className="hot-search-item" onClick={() => commitSearch(first) }>
       { first }
     </div>
   )
 }
 
 const HotSearchList = (props) => {
-  const { hotitems, inputContent, commitContent } = props;
+  const { hotitems, commitSearch, inputSearch } = props;
   const hotList = hotitems.map((v, i) => {
-    return <HotSearchItem item={ v } key={ i } inputContent={ inputContent } commitContent={ commitContent } />
+    return <HotSearchItem item={ v } key={ i } inputSearch={ inputSearch } commitSearch={ commitSearch } />
   });
   return (
     <div className="hot-search-list">

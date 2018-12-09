@@ -1,4 +1,4 @@
-import { INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT, INIT_HISTORY } from '../actions/types';
+import { INIT_HOTITEMS, INPUT_SEARCH, COMMIT_SEARCH, INIT_HISTORY, DELETE_HISTORY } from '../actions/types';
 
 const search = (state = {
   input: '',
@@ -8,19 +8,23 @@ const search = (state = {
   switch (action.type) {
     case INIT_HOTITEMS:
       return {...state, ...{items: action.payload} };
-    case INPUT_CONTENT:
+    case INPUT_SEARCH:
       return {...state, ...{input: action.payload} };
-    case COMMIT_CONTENT:
-      const inputList = state.inputList;
-      if (inputList.indexOf(action.payload) === -1) {
-        inputList.unshift(action.payload)
-        localStorage.setItem('search_history', JSON.stringify(inputList))
-        return {...state, ...{inputList: [...inputList]} };
+    case COMMIT_SEARCH:
+      if (state.inputList.indexOf(action.payload) === -1) {
+        state.inputList.unshift(action.payload);
+        localStorage.setItem('search_history', JSON.stringify(state.inputList));
+        return {...state, ...{inputList: [...state.inputList]} };
       }
-      return state;
+      return {...state, ...{input: action.payload}};
     case INIT_HISTORY:
       const searchHistory = localStorage.getItem('search_history') ? JSON.parse(localStorage.getItem('search_history')) : [];
       return {...state, ...{inputList: [...searchHistory]} };
+    case DELETE_HISTORY:
+      const index = action.payload;
+      state.inputList.splice(index, 1);
+      localStorage.setItem('search_history', JSON.stringify(state.inputList));
+      return {...state, ...{inputList: [...state.inputList]} };
     default:
       return state;
   }

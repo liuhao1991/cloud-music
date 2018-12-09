@@ -1,5 +1,5 @@
 import http from '../js/http';
-import { INIT_RECOMMEND, INIT_PLAYLIST, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_CONTENT, COMMIT_CONTENT, INIT_HISTORY } from './types';
+import { INIT_RECOMMEND, INIT_PLAYLIST, INIT_HOTSONGS, INIT_HOTITEMS, INPUT_SEARCH, COMMIT_SEARCH, INIT_HISTORY, DELETE_HISTORY } from './types';
 // 最新音乐初始化
 export const initRecommend = () => {
   return (dispath) => {
@@ -49,20 +49,20 @@ export const initHotItems = () => {
   }
 }
 // 搜索框输入
-export const inputContent = (text) => {
+export const inputSearch = (text) => {
   return (dispath) => {
     dispath({
-      type: INPUT_CONTENT,
+      type: INPUT_SEARCH,
       payload: text
     });
   }
 }
 // 提交搜索关键词
-export const commitContent = (text) => {
+export const commitSearch = (text) => {
   console.log(text)
   return (dispath) => {
     dispath({
-      type: COMMIT_CONTENT,
+      type: COMMIT_SEARCH,
       payload: text
     });
   }
@@ -72,6 +72,15 @@ export const initHistory = () => {
   return (dispath) => {
     dispath({
       type: INIT_HISTORY
+    });
+  }
+}
+// 删除搜索历史
+export const deleteHistory = (index) => {
+  return (dispath) => {
+    dispath({
+      type: DELETE_HISTORY,
+      payload: index
     });
   }
 }

@@ -3,11 +3,11 @@ import HotSearchList from './HotSearchList';
 import SearchHistory from './SearchHistory';
 
 const SearchDefault = props => {
-  const { items, commitContent, inputContent, inputList } = props;
+  const { items, commitSearch, inputSearch, inputList, deleteHistory } = props;
   return (
     <div className="m-default">
-      <HotSearchList hotitems={ items } commitContent={ commitContent } inputContent={ inputContent } />
-      <SearchHistory inputList={ inputList } />
+      <HotSearchList hotitems={ items } commitSearch={ commitSearch } inputSearch={ inputSearch } />
+      <SearchHistory inputList={ inputList } deleteHistory={deleteHistory} commitSearch={ commitSearch }/>
     </div>
   )
 }
