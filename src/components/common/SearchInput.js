@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import '../../assets/css/SearchInput.css';
 
 class SearchInput extends Component {
   handleChangeInput = e => {
-    const { inputSearch } = this.props;
+    const { inputSearch, searchRecommend } = this.props;
     const value = e.target.value;
     inputSearch(value);
+    if (value === '') return;
+    this.searchContentByValue(searchRecommend, value);
   }
+
+  searchContentByValue = _.debounce((callback, value) => {
+    callback(value);
+  }, 500)
 
   handleClearInput = () => {
     const { inputSearch } = this.props;
@@ -15,12 +22,14 @@ class SearchInput extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { commitSearch, input } = this.props;
+    const { input, commitSearch, searchSongs, searchMultimatch } = this.props;
     commitSearch(input);
+    searchSongs(input);
+    searchMultimatch(input);
   }
 
   render () {
-    const { input } = this.props;
+    const { input, focusInput } = this.props;
     return (
       <form className="search-input" onSubmit={ this.handleSubmit }>
         <div className="inputcover">
@@ -30,7 +39,8 @@ class SearchInput extends Component {
             className="input"
             value={ input }
             placeholder="搜索歌曲、歌手、专辑"
-            onChange={ this.handleChangeInput }/>
+            onChange={ this.handleChangeInput }
+            onFocus={ () => focusInput(true) } />
           <figure className="close" onClick={ this.handleClearInput }>
             <i className={ `u-svg u-svg-empty ${input !== '' ? 'z-show' : null}` }></i>
           </figure>

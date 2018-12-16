@@ -1,11 +1,12 @@
 import React from 'react';
 import Song from './Song';
 
-const SongList = (props) => {
-  const { songs } = props;
+const SearchSonglist = ({ songs }) => {
+  if (!songs) {
+    return <div style={ styles.noresult }>暂无搜索结果</div>;
+  }
   const list = songs.map((item, index) => {
-    const { song, id, name } = item;
-    const { artists, alias, album } = song;
+    const { id, name, alias, artists, album } = item;
     const singerList = artists.map(v => v.name);
     const singers = singerList.join(' / ');
     const alb = album.name;
@@ -22,12 +23,18 @@ const SongList = (props) => {
     };
     return <Song song={ songInfo } key={ id }/>
   });
-
   return (
-    <div>
+    <div className="m-songlist">
       { list }
     </div>
   )
 }
 
-export default SongList;
+const styles = {
+  noresult: {
+    padding: '20px 0',
+    textAlign: 'center'
+  }
+}
+
+export default SearchSonglist;

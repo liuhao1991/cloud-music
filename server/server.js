@@ -55,7 +55,6 @@ apiRoutes.get('/hotsongs', function(req, res) {
     params: 'i5+trn+8EKLzTmI8rHrlG7uq0Jk0TYkdrHE2nZ4gn/a9nqIie6iW8YhypI0Qi09t',
     encSecKey: 'cfbb3c121690d39f001c613b487490ef4968b0158f67a4fcfca32a22f9f20c58c8b8b3ef7817148b04460a0a1507010094f76c96b28f47af9ea636b71296272d4a1b8ce050a674390f9c615e3e942d85b7d400bd2ebff75dfa35951175b87f8ea26bd6551d22452f400d9713f65295e48fa4561293f1f7342b884e5f601883c8',
   };
-
   http.post('v3/playlist/detail', qs.stringify(params))
     .then(response => {
       res.json(response.data)
@@ -70,7 +69,6 @@ apiRoutes.get('/hots', function(req, res) {
     params: '42Gh4x5kxQftKBGxCuSwWVNs5cbsfGQbrN6sIiMevWo=',
     encSecKey: 'b5644a6159c26e28c8e1b5cfc1357cf7b4c5b248ef497a72e8acfdbfb2c0d0c9ef1a2dc52c6fef0d825447d604aa5de3ff422cbaa883ae33977090110ba2f001f2b2ed0b6764d757043fa51035718d014314b09d170a5be596e1bc5c3d921b58fda0258207b6c60e5427b503c97c609c0097e6c482bc013849f0773d0e2bdb2c',
   };
-
   http.post('search/hot', qs.stringify(params))
     .then(response => {
       res.json(response.data)
@@ -81,7 +79,7 @@ apiRoutes.get('/hots', function(req, res) {
 });
 
 apiRoutes.get('/playlist', function(req, res) {
-  var data = {
+  const data = {
     id: req.query.id
   };
   const params = crypto(data);
@@ -95,7 +93,7 @@ apiRoutes.get('/playlist', function(req, res) {
 })
 
 apiRoutes.get('/playlist/comments/', function(req, res) {
-  var data = {
+  const data = {
     rid: req.query.rid
   };
   const params = crypto(data);
@@ -107,6 +105,52 @@ apiRoutes.get('/playlist/comments/', function(req, res) {
       console.log(err)
     })
 })
+
+apiRoutes.get('/keyword', function(req, res) {
+  const data = {
+    s: req.query.text || ''
+  };
+  const params = crypto(data);
+  http.post(`search/suggest/keyword`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
+apiRoutes.get('/multimatch', function(req, res) {
+  const data = {
+    type: req.query.type || 1,
+    s: req.query.text || ''
+  };
+  const params = crypto(data);
+  http.post(`search/suggest/multimatch`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
+apiRoutes.get('/matchsongs', function(req, res) {
+  const data = {
+    s: req.query.text,
+    type: req.query.type || 1, // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频
+    limit: req.query.limit || 20,
+    offset: req.query.offset || 0
+  };
+  const params = crypto(data);
+  http.post(`search/get`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
 
 app.use('/api', apiRoutes);
 
