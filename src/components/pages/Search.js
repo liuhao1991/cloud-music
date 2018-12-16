@@ -21,8 +21,28 @@ class Search extends Component {
     const { inputSearch, commitSearch, deleteHistory, searchRecommend, focusInput, searchSongs, searchMultimatch } = this.props;
     return (
       <div className="tab-content">
-        <SearchInput input={ input } commitSearch={ commitSearch } inputSearch={ inputSearch }  searchRecommend={ searchRecommend } focusInput={ focusInput } searchSongs={ searchSongs } searchMultimatch={ searchMultimatch } />
-        <SearchResult input={ input } search={ search } focus={ focus } recom={ recom } multimatch={ multimatch } songs={ songs } commitSearch={ commitSearch } items={ items } inputList={ inputList } inputSearch={ inputSearch } deleteHistory={ deleteHistory } searchSongs={ searchSongs } searchMultimatch={ searchMultimatch } />
+        <SearchInput
+          input={ input }
+          commitSearch={ commitSearch }
+          inputSearch={ inputSearch }
+          searchRecommend={ searchRecommend }
+          focusInput={ focusInput }
+          searchSongs={ searchSongs }
+          searchMultimatch={ searchMultimatch } />
+        <SearchResult
+          input={ input }
+          search={ search }
+          focus={ focus }
+          recom={ recom }
+          multimatch={ multimatch }
+          songs={ songs }
+          items={ items }
+          commitSearch={ commitSearch }
+          inputList={ inputList }
+          inputSearch={ inputSearch }
+          deleteHistory={ deleteHistory }
+          searchSongs={ searchSongs }
+          searchMultimatch={ searchMultimatch } />
       </div>
     )
   }
