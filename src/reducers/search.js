@@ -43,7 +43,7 @@ const search = (state = {
     case SEARCH_RECOMMEND:
       return {...state, ...{recom: action.payload} };
     case FOCUS_INPUT:
-      return {...state, ...{focus: action.payload, search: false } };
+      return {...state, ...{focus: action.payload, search: false} };
     case SEARCH_MULTIMATCH:
       return  {...state, ...{multimatch: action.payload} };
     case SEARCH_SONGS:

@@ -9,7 +9,11 @@ const SearchResult = ({input, search, focus, items, recom, multimatch, songs, in
     return (
       <div className="m-searchresult">
         <SearchMultimatch multimatch={ multimatch } />
-        <SearchSonglist songs={ songs.songs } />
+        {
+          songs.songs
+          ? <SearchSonglist songs={ songs.songs } />
+          : <div style={ styles.noresult }>暂无搜索结果</div>
+        }
       </div>
     )
   }
@@ -21,6 +25,13 @@ const SearchResult = ({input, search, focus, items, recom, multimatch, songs, in
     return (
       <SearchDefault items={ items } inputList={ inputList } commitSearch={ commitSearch } inputSearch={ inputSearch } deleteHistory={ deleteHistory } searchSongs={ searchSongs } searchMultimatch={ searchMultimatch } />
     )
+  }
+}
+
+const styles = {
+  noresult: {
+    padding: '20px 0',
+    textAlign: 'center'
   }
 }
 
