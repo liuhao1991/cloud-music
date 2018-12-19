@@ -10,7 +10,7 @@ import '../../assets/css/Search.css';
 class Search extends Component {
   render () {
     const { search } = this.props;
-    const { songs, focus, input, multimatch } = search;
+    const { songs, input, multimatch } = search;
     const searched = search.search;
 
     const RenderLogic = () => {
@@ -26,7 +26,7 @@ class Search extends Component {
           </div>
         )
       }
-      if (input !== '' && focus) {
+      if (input !== '') {
         return (
           <SearchRecommendContainer />
         )

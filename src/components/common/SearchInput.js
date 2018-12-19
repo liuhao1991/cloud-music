@@ -30,7 +30,7 @@ class SearchInput extends Component {
   }
 
   render () {
-    const { search, focusInput } = this.props;
+    const { search } = this.props;
     const { input } = search;
     return (
       <form className="search-input" onSubmit={ this.handleSubmit }>
@@ -42,7 +42,7 @@ class SearchInput extends Component {
             value={ input }
             placeholder="搜索歌曲、歌手、专辑"
             onChange={ this.handleChangeInput }
-            onFocus={ () => focusInput(true) } />
+            onFocus={ this.handleChangeInput } />
           <figure className="close" onClick={ this.handleClearInput }>
             <i className={ `u-svg u-svg-empty ${input !== '' ? 'z-show' : null}` }></i>
           </figure>
