@@ -22,14 +22,16 @@ class SearchInput extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { input, commitSearch, searchSongs, searchMultimatch } = this.props;
+    const { search, commitSearch, searchSongs, searchMultimatch } = this.props;
+    const { input } = search;
     commitSearch(input);
     searchSongs(input);
     searchMultimatch(input);
   }
 
   render () {
-    const { input, focusInput } = this.props;
+    const { search, focusInput } = this.props;
+    const { input } = search;
     return (
       <form className="search-input" onSubmit={ this.handleSubmit }>
         <div className="inputcover">

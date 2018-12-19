@@ -1,12 +1,7 @@
 import React from 'react';
 import '../../assets/css/SearchRecommend.css';
 
-const SearchRecommend = ({ input, recom, commitSearch, searchSongs, searchMultimatch }) => {
-  const handleSubmit = (text) => {
-    commitSearch(text);
-    searchSongs(text);
-    searchMultimatch(text);
-  }
+const SearchRecommend = ({ input, recom, handleSubmit }) => {
   return (
     <div className="serarch-recommend">
       <h3 className="serarch-recommend-title f-thide">搜索"{ input }"</h3>

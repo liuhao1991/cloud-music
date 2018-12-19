@@ -2,12 +2,7 @@ import React from 'react';
 import '../../assets/css/SearchHistory.css';
 
 const SearchHistory = (props) => {
-  const { inputList, deleteHistory, commitSearch, searchSongs, searchMultimatch } = props;
-  const handleSubmit = text => {
-    commitSearch(text);
-    searchSongs(text);
-    searchMultimatch(text);
-  }
+  const { inputList, deleteHistory, handleSubmit } = props;
   const list = inputList.slice(0, 10).map((v, i) => {
     return <HistoryItem key={ i } name={ v } index={ i } deleteHistory={ deleteHistory } handleSubmit={ handleSubmit }/>
   })
