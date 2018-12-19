@@ -47,7 +47,7 @@ a, a:visited {
   height: 46px;
   background-repeat: no-repeat;
   background-size: 166px 97px;
-  background-image: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28c3767992ca4bb6d4887c74880);
+  background-image: url(../img/index_icon_2x.png);
   background-position: 0 -30px;
 }
 .m-matchlist .describe {
@@ -80,5 +80,21 @@ a, a:visited {
 .u-svg-arr {
   width: 8px;
   height: 13px;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJub25lIiBzdHJva2U9IiM5YjliOWIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMi45MzkgMjMuOTM5IDEzLjg3OSAxMyAyLjkzOSAyLjA2MSIvPjwvc3ZnPg==);
+  background-image: url(../img/right_arrow.svg);
+}
+
+.m-matchlist .mv .pic, .m-matchlist .mv .piccover, .m-matchlist .video .pic, .m-matchlist .video .piccover {
+  width: 89px;
+  height: 50px;
+}
+.m-matchlist .mv .piccover:after, .m-matchlist .video .piccover:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%,-50%);
+  background: url(../img/play.svg) 0 0/contain no-repeat;
 }

@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { initHistory, deleteHistory, commitSearch, searchSongs, searchMultimatch } from '../../actions';
 import SearchHistory from '../common/SearchHistory';
 
-const SearchHistoryContainer = (props) => {
-  if (!props.search.inputList.length) {
-    props.initHistory();
+class SearchHistoryContainer extends Component {
+  
+  componentDidMount () {
+    if (!this.props.search.inputList.length) {
+      this.props.initHistory();
+    }
   }
-  const { search, deleteHistory, commitSearch, searchSongs, searchMultimatch } = props;
-  const { inputList } = search;
-  const handleSubmit = text => {
-    commitSearch(text);
-    searchSongs(text);
-    searchMultimatch(text);
+
+  render () {
+    const { search, deleteHistory, commitSearch, searchSongs, searchMultimatch } = this.props;
+    const { inputList } = search;
+    const handleSubmit = text => {
+      commitSearch(text);
+      searchSongs(text);
+      searchMultimatch(text);
+    }
+    return (
+      <SearchHistory inputList={ inputList } handleSubmit={ handleSubmit } deleteHistory={ deleteHistory }/>
+    )
   }
-  return (
-    <SearchHistory inputList={ inputList } handleSubmit={ handleSubmit } deleteHistory={ deleteHistory }/>
-  )
 }
 
 const mapStateToProps = state => {

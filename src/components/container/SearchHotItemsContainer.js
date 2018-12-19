@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { inputSearch, commitSearch, searchSongs, searchMultimatch, initHotItems } from '../../actions';
 import SearchHotItems from '../common/SearchHotItems';
 
-const SearchHotItemsContainer = props => {
-  if (!props.search.items.length) {
-    props.initHotItems();
+class SearchHotItemsContainer extends Component {
+
+  componentDidMount () {
+    if (!this.props.search.items.length) {
+      this.props.initHotItems();
+    }
   }
-  const { search, commitSearch, inputSearch, searchSongs, searchMultimatch } = props;
-  const { items } = search;
-  const handleSubmit = text => {
-    commitSearch(text);
-    searchSongs(text);
-    searchMultimatch(text);
+  
+  render () {
+    const { search, commitSearch, inputSearch, searchSongs, searchMultimatch } = this.props;
+    const { items } = search;
+    const handleSubmit = text => {
+      commitSearch(text);
+      searchSongs(text);
+      searchMultimatch(text);
+    }
+    return (
+      <SearchHotItems handleSubmit={ handleSubmit } inputSearch={ inputSearch } hotitems={ items }/>
+    )
   }
-  return (
-    <SearchHotItems handleSubmit={ handleSubmit } inputSearch={ inputSearch } hotitems={ items }/>
-  )
 }
 
 const mapStateToProps = state => {

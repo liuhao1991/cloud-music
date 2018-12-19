@@ -6,7 +6,7 @@
   padding-top: 38.9%;
   padding-left: 20px; 
   overflow: hidden;
-  background: url(//s3.music.126.net/m/s/img/hot_music_bg_3x.jpg?2bfefd3ba37eaffbd66b7d108b9de26a) no-repeat;
+  background: url(../img/hot_music_bg_3x.jpg) no-repeat;
   background-size: contain;
 }
 .banner:after {
@@ -21,10 +21,7 @@
 }
 .hotpct {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
-  -webkit-box-pack: center;
   justify-content: center;
   z-index: 2;
   padding-left: 20px;
@@ -55,7 +52,7 @@
   display: inline-block;
   color: #999;
   padding-right: 14px;
-  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNCAyMiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJtMSAxbDEwIDEwLTEwIDEwIi8+PC9zdmc+) 100% no-repeat;
+  background: url(../img/right_arrow.svg) 100% no-repeat;
   background-size: 7px 12px;
   font-size: 14px;
 }

@@ -12,21 +12,35 @@ class Search extends Component {
     const { search } = this.props;
     const { songs, focus, input, multimatch } = search;
     const searched = search.search;
+
+    const RenderLogic = () => {
+      if (searched) {
+        return (
+          <div className="search-result">
+            <SearchMultimatch multimatch={ multimatch } />
+            {
+              songs.songs
+              ? <SearchSonglist songs={ songs.songs } />
+              : <div style={ styles.noresult }>暂无搜索结果</div>
+            }
+          </div>
+        )
+      }
+      if (input !== '' && focus) {
+        return (
+          <SearchRecommendContainer />
+        )
+      } else {
+        return (
+          <SearchDefaultContainer />
+        )
+      }
+    }
+
     return (
       <div className="tab-content">
         <SearchInputContainer />
-        {
-          searched && input !== ''
-          ? <SearchMultimatch multimatch={ multimatch } />
-          : songs.songs
-            ? <SearchSonglist songs={ songs.songs } />
-            : <div style={ styles.noresult }>暂无搜索结果</div>
-        }
-        {
-          input !== '' && focus
-          ? <SearchRecommendContainer />
-          : <SearchDefaultContainer />
-        }
+        <RenderLogic />
       </div>
     )
   }
