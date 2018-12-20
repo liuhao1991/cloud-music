@@ -9,7 +9,7 @@ const SearchRecommendContainer = props => {
 	const { input, recom } = search;
 	const handleSubmit = text => {
     commitSearch(text);
-    searchSongs(text);
+    searchSongs({text});
     searchMultimatch(text);
   }
 	return <SearchRecommend input={ input } recom={ recom } handleSubmit={ handleSubmit }/>

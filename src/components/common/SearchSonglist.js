@@ -21,7 +21,7 @@ class SearchSonglist extends Component {
         id,
         showIndex
       };
-      return <Song song={ songInfo } key={ id }/>
+      return <Song song={ songInfo } key={ index }/>
     });
     return (
       <div className="m-songlist">
