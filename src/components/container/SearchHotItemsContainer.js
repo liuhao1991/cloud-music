@@ -18,7 +18,7 @@ class SearchHotItemsContainer extends Component {
     const { items } = search;
     const handleSubmit = text => {
       commitSearch(text);
-      searchSongs(text);
+      searchSongs({text});
       searchMultimatch(text);
     }
     return (

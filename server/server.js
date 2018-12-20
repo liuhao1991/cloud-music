@@ -139,7 +139,6 @@ apiRoutes.get('/matchsongs', function(req, res) {
   const data = {
     s: req.query.text,
     type: req.query.type || 1, // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频
-    limit: req.query.limit || 20,
     offset: req.query.offset || 0
   };
   const params = crypto(data);

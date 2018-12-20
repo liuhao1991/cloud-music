@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import SearchInputContainer from '../container/SearchInputContainer';
 import SearchDefaultContainer from '../container/SearchDefaultContainer';
 import SearchRecommendContainer from '../container/SearchRecommendContainer';
+import SearchSonglistContainer from '../container/SearchSonglistContainer';
 import SearchMultimatch from '../common/SearchMultimatch';
-import SearchSonglist from '../common/SearchSonglist';
 import Loading from '../common/Loading';
 import '../../assets/css/Search.css';
 
 class Search extends Component {
+
   render () {
     const { search } = this.props;
     const { songs, input, multimatch, focus } = search;
@@ -38,7 +39,7 @@ const RenderResult = ({searched, multimatch, songs, input, focus}) => {
         <SearchMultimatch multimatch={ multimatch } />
         {
           songs.songs
-          ? <SearchSonglist songs={ songs.songs } />
+          ? <SearchSonglistContainer songs={ songs.songs } />
           : <div style={ styles.noresult }>暂无搜索结果</div>
         }
       </div>

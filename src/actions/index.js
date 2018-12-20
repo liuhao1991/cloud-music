@@ -93,9 +93,10 @@ export const searchMultimatch = (text) => {
 }
 
 // 搜索歌曲结果
-export const searchSongs = (text) => {
+export const searchSongs = (params) => {
+  console.log(params);
   return (dispath) => {
-    http.get('http://localhost:3001/api/matchsongs', {params: {text}})
+    http.get('http://localhost:3001/api/matchsongs', {params: params})
       .then(res => {
         dispath({
           type: SEARCH_SONGS,

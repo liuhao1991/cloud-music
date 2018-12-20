@@ -26,12 +26,12 @@ class SearchInput extends Component {
     const { input } = search;
     if (input === '') return;
     commitSearch(input);
-    searchSongs(input);
+    searchSongs({text: input});
     searchMultimatch(input);
   }
 
   render () {
-    const { search} = this.props;
+    const { search } = this.props;
     const { input } = search;
     return (
       <form className="search-input" onSubmit={ this.handleSubmit }>
