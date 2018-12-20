@@ -7,7 +7,8 @@ import SearchHotItems from '../common/SearchHotItems';
 class SearchHotItemsContainer extends Component {
 
   componentDidMount () {
-    if (!this.props.search.items.length) {
+    const { items } = this.props.search;
+    if (!items.length) {
       this.props.initHotItems();
     }
   }

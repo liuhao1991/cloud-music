@@ -7,7 +7,8 @@ import SearchHistory from '../common/SearchHistory';
 class SearchHistoryContainer extends Component {
   
   componentDidMount () {
-    if (!this.props.search.inputList.length) {
+    const { inputList } = this.props.search
+    if (!inputList.length) {
       this.props.initHistory();
     }
   }

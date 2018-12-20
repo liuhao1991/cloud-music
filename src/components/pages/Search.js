@@ -40,7 +40,7 @@ class Search extends Component {
     return (
       <div className="tab-content">
         <SearchInputContainer />
-        <RenderLogic />
+        <SearchDefaultContainer />
       </div>
     )
   }
