@@ -9,7 +9,6 @@ import {
   INIT_HISTORY,
   DELETE_HISTORY,
   SEARCH_RECOMMEND,
-  FOCUS_INPUT,
   SEARCH_MULTIMATCH,
   SEARCH_SONGS,
  } from './types';
@@ -133,14 +132,5 @@ export const searchRecommend = (text) => {
           payload: res.data.result
         });
       })
-  }
-}
-// 搜索框激活
-export const focusInput = value => {
-  return (dispath) => {
-    dispath({
-      type: FOCUS_INPUT,
-      payload: value
-    });
   }
 }
