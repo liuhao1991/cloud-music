@@ -24,13 +24,14 @@ class SearchInput extends Component {
     e.preventDefault();
     const { search, commitSearch, searchSongs, searchMultimatch } = this.props;
     const { input } = search;
+    if (input === '') return;
     commitSearch(input);
     searchSongs(input);
     searchMultimatch(input);
   }
 
   render () {
-    const { search } = this.props;
+    const { search} = this.props;
     const { input } = search;
     return (
       <form className="search-input" onSubmit={ this.handleSubmit }>

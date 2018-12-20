@@ -77,20 +77,6 @@ export const commitSearch = (text) => {
       type: COMMIT_SEARCH,
       payload: text
     });
-    // http.get('http://localhost:3001/api/multimatch', {params: {text}})
-    //   .then(res => {
-    //     dispath({
-    //       type: SEARCH_MULTIMATCH,
-    //       payload: res.data.result
-    //     });
-    //   })
-    // http.get('http://localhost:3001/api/matchsongs', {params: {text}})
-    //   .then(res => {
-    //     dispath({
-    //       type: SEARCH_SONGS,
-    //       payload: res.data.result
-    //     });
-    //   })
   }
 }
 

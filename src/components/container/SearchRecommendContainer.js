@@ -7,7 +7,7 @@ import SearchRecommend from '../common/SearchRecommend';
 const SearchRecommendContainer = props => {
 	const { search, commitSearch, searchSongs, searchMultimatch } = props;
 	const { input, recom } = search;
-	const handleSubmit = (text) => {
+	const handleSubmit = text => {
     commitSearch(text);
     searchSongs(text);
     searchMultimatch(text);
