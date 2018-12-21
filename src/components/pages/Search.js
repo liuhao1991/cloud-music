@@ -25,7 +25,7 @@ class Search extends Component {
 }
 
 const RenderResult = ({searched, multimatch, songs, input, focus}) => {
-  if (!searched && input !== '') { // 
+  if (!searched && input !== '') {
     if (!focus) { // when SearchInput is onBlur
       return <Loading />
     } else { // when SearchInput is onFocus
@@ -38,7 +38,7 @@ const RenderResult = ({searched, multimatch, songs, input, focus}) => {
       <div className="search-result">
         <SearchMultimatch multimatch={ multimatch } />
         {
-          songs.songs
+          songs.songs && songs.songs.length
           ? <SearchSonglistContainer songs={ songs.songs } />
           : <div style={ styles.noresult }>暂无搜索结果</div>
         }

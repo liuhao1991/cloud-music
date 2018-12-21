@@ -13,9 +13,10 @@ import {
   SEARCH_SONGS,
  } from './types';
 // 最新音乐初始化
+const hostname = 'http://localhost:3001';
 export const initRecommend = () => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/newsong')
+    http.get(`${hostname}/api/newsong`)
       .then(res => {
         dispath({
           type: INIT_RECOMMEND,
@@ -27,7 +28,7 @@ export const initRecommend = () => {
 // 推荐歌单初始化
 export const initPlaylist = () => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/v1')
+    http.get(`${hostname}/api/v1`)
       .then(res => {
         dispath({
           type: INIT_PLAYLIST,
@@ -39,7 +40,7 @@ export const initPlaylist = () => {
 // 热门歌曲初始化
 export const initHotsongs = () => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/hotsongs')
+    http.get(`${hostname}/api/hotsongs`)
       .then(res => {
         dispath({
           type: INIT_HOTSONGS,
@@ -51,7 +52,7 @@ export const initHotsongs = () => {
 // 热门搜索标签初始化
 export const initHotItems = () => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/hots')
+    http.get(`${hostname}/api/hots`)
       .then(res => {
         dispath({
           type: INIT_HOTITEMS,
@@ -82,7 +83,7 @@ export const commitSearch = (text) => {
 // 搜索多重匹配
 export const searchMultimatch = (text) => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/multimatch', {params: {text}})
+    http.get(`${hostname}/api/multimatch`, {params: {text}})
       .then(res => {
         dispath({
           type: SEARCH_MULTIMATCH,
@@ -94,9 +95,8 @@ export const searchMultimatch = (text) => {
 
 // 搜索歌曲结果
 export const searchSongs = (params) => {
-  console.log(params);
   return (dispath) => {
-    http.get('http://localhost:3001/api/matchsongs', {params: params})
+    http.get(`${hostname}/api/matchsongs`, {params: params})
       .then(res => {
         dispath({
           type: SEARCH_SONGS,
@@ -126,7 +126,7 @@ export const deleteHistory = (index) => {
 // 搜索关键词推荐
 export const searchRecommend = (text) => {
   return (dispath) => {
-    http.get('http://localhost:3001/api/keyword', {params: {text}})
+    http.get(`${hostname}/api/keyword`, {params: {text}})
       .then(res => {
         dispath({
           type: SEARCH_RECOMMEND,

@@ -4,7 +4,7 @@ import '../../assets/css/SearchRecommend.css';
 const SearchRecommend = ({ input, recom, handleSubmit }) => {
   return (
     <div className="serarch-recommend">
-      <h3 className="serarch-recommend-title f-thide">搜索"{ input }"</h3>
+      <h3 className="serarch-recommend-title f-thide" onClick={ () => handleSubmit(input) }>搜索"{ input }"</h3>
       {
         recom.allMatch
         ? <ul>

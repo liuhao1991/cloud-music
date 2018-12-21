@@ -47,7 +47,7 @@ const search = (state = {
       const { songs } = state;
       const originSongs = songs.songs || [];
       const songCount = action.payload.songCount;
-      const newSongs = [].concat(originSongs, action.payload.songs);
+      const newSongs = [].concat(originSongs, action.payload.songs || []);
       return  {...state, ...{songs: {songs: newSongs, songCount: songCount}, search: true} };
     default:
       return state;
