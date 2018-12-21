@@ -1,0 +1,50 @@
+.song-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 320px;
+  overflow: hidden;
+  background-color: transparent;
+}
+.m-song-bg {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  transform: scale(1.5);
+  transform-origin: center top;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  transition: opacity .3s linear;
+  background-image: url(//music.163.com/api/img/blur/109951163707318402);
+  opacity: 1;
+}
+.m-song-bg:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0,0,0,.5);
+}
+.m-scroll_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  overflow: hidden;
+  z-index: 21;
+}
+@media only screen and (device-height: 812px) and (device-width: 375px) {
+  .m-scroll_wrapper {
+    bottom: 94px;
+  }
+}

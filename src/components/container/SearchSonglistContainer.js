@@ -7,7 +7,8 @@ import SearchSonglist from '../common/SearchSonglist';
 class SearchSonglistContainer extends Component {
 
   state = {
-    offset: 0
+    offset: 0,
+    limit: 20
   }
 
   componentDidMount () {
@@ -25,12 +26,13 @@ class SearchSonglistContainer extends Component {
     const srollHeight = wrapper.clientHeight + 104 - (document.documentElement.scrollTop || document.body.scrollTop);
     const windowHeight = window.screen.height;
     if (srollHeight === windowHeight) {
+      console.log(songs.songCount, songs.songs.length)
       if (songs.songCount === songs.songs.length) {
         return;
       }
       this.setState(prevState => {
         return {
-          offset: prevState.offset + 10
+          offset: prevState.offset + prevState.limit
         }
       })
       searchSongs({

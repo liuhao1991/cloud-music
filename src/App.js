@@ -5,6 +5,7 @@ import Recommend from './components/pages/Recommend';
 import Hotsongs from './components/pages/Hotsongs';
 import Search from './components/pages/Search';
 import Playlist from './components/pages/Playlist';
+import SongPlayer from './components/pages/SongPlayer';
 import './App.css';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/hotsongs" component={ Hotsongs } />
           <Route path="/search" component={ Search } />
           <Route path="/playlist/:id" component={ Playlist } />
+          <Route path="/song/:id" component={ SongPlayer } />
         </div>
       </Router>
     );
