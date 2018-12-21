@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/css/HotSearchList.css';
+import '../../assets/css/SearchHotItem.css';
 
 const SearchHotItem = (props) => {
 	const { first } = props.item;

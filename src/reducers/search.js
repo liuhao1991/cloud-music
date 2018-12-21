@@ -6,11 +6,13 @@ import {
   DELETE_HISTORY,
   SEARCH_RECOMMEND,
   SEARCH_MULTIMATCH,
-  SEARCH_SONGS
+  SEARCH_SONGS,
+  SEARCH_LOADING,
 } from '../actions/types';
 
 const search = (state = {
   input: '',
+  loading: false,
   focus: false,
   search: false,
   inputList: [],
@@ -43,12 +45,14 @@ const search = (state = {
       return {...state, ...{recom: action.payload} };
     case SEARCH_MULTIMATCH:
       return  {...state, ...{multimatch: action.payload} };
+    case SEARCH_LOADING:
+      return  {...state, ...{loading: true} };
     case SEARCH_SONGS:
       const { songs } = state;
       const originSongs = songs.songs || [];
       const songCount = action.payload.songCount;
       const newSongs = [].concat(originSongs, action.payload.songs || []);
-      return  {...state, ...{songs: {songs: newSongs, songCount: songCount}, search: true} };
+      return  {...state, ...{songs: {songs: newSongs, songCount: songCount}, search: true, loading: false} };
     default:
       return state;
   }

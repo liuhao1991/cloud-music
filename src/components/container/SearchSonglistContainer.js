@@ -23,10 +23,10 @@ class SearchSonglistContainer extends Component {
     const { searchSongs, search } = this.props;
     const { input, songs } = search;
     const wrapper = document.querySelector('.tab-content');
-    const srollHeight = wrapper.clientHeight + 104 - (document.documentElement.scrollTop || document.body.scrollTop);
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop - 104;
+    const srollHeight = wrapper.clientHeight - scrollTop;
     const windowHeight = window.screen.height;
     if (srollHeight === windowHeight) {
-      console.log(songs.songCount, songs.songs.length)
       if (songs.songCount === songs.songs.length) {
         return;
       }
@@ -34,7 +34,8 @@ class SearchSonglistContainer extends Component {
         return {
           offset: prevState.offset + prevState.limit
         }
-      })
+      });
+      
       searchSongs({
         text: input,
         offset: this.state.offset
@@ -45,7 +46,7 @@ class SearchSonglistContainer extends Component {
   render () {
     const { search } = this.props;
     const { songs } = search;
-    return <SearchSonglist songs={ songs.songs }/>
+    return <SearchSonglist songs={ songs.songs } />
   }
 }
 

@@ -11,6 +11,7 @@ import {
   SEARCH_RECOMMEND,
   SEARCH_MULTIMATCH,
   SEARCH_SONGS,
+  SEARCH_LOADING,
  } from './types';
 // 最新音乐初始化
 const hostname = 'http://localhost:3001';
@@ -123,6 +124,7 @@ export const deleteHistory = (index) => {
     });
   }
 }
+
 // 搜索关键词推荐
 export const searchRecommend = (text) => {
   return (dispath) => {
@@ -133,5 +135,14 @@ export const searchRecommend = (text) => {
           payload: res.data.result
         });
       })
+  }
+}
+
+// 向下活动加载更多
+export const loadingMore = () => {
+  return (dispath) => {
+    dispath({
+      type: SEARCH_LOADING
+    });
   }
 }

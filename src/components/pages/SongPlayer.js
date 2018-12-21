@@ -8,7 +8,7 @@ class SongPlayer extends Component {
       <div className="song-player">
         <div className="m-song-bg"></div>
         <div className="m-scroll_wrapper">
-
+          { id }
         </div>
       </div>
     )
