@@ -48,3 +48,11 @@
     bottom: 94px;
   }
 }
+.m-scroll_scroller {
+  height: 2000px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  width: 100%;
+}
