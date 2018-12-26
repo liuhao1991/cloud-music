@@ -22,7 +22,7 @@
   overflow: hidden;
   z-index: 1;
   transition: opacity .3s linear;
-  background-image: url(//music.163.com/api/img/blur/109951163707318402);
+  background-image: url(//music.163.com/api/img/blur/3302932937412681);
   opacity: 1;
 }
 .m-song-bg:after {
@@ -43,16 +43,326 @@
   overflow: hidden;
   z-index: 21;
 }
-@media only screen and (device-height: 812px) and (device-width: 375px) {
-  .m-scroll_wrapper {
-    bottom: 94px;
-  }
-}
+
 .m-scroll_scroller {
-  height: 2000px;
+  height: 1500px;
   position: absolute;
   left: 0;
   top: 0;
   min-height: 100%;
   width: 100%;
+  /*background:linear-gradient(orangered,orange);*/
+}
+.m-song_newfst {
+  position: relative;
+  padding-bottom: 12px;
+  box-sizing: border-box;
+}
+.m-logo {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  display: block;
+  height: 17px;
+  line-height: 0;
+}
+.u-svg-logosong {
+  width: 92px;
+  height: 17px;
+}
+.u-svg {
+  display: inline-block;
+  vertical-align: middle;
+  background-position: 0 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.m-song-wrap {
+  padding-top: 63px;
+}
+.m-song-disc {
+  position: relative;
+  width: 248px;
+  height: 248px;
+  margin: 0 auto;
+}
+.m-song-disc:after {
+  content: " ";
+  position: absolute;
+  top: -63px;
+  left: 107px;
+  z-index: 5;
+  width: 84px;
+  height: 122px;
+  background: url(../img/needle.png) no-repeat;
+  background-size: contain;
+}
+.m-song-turn {
+  height: 100%;
+  width: 100%;
+}
+.m-song-turn:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  background: url(../img/disc.png) no-repeat;
+  background-size: contain;
+}
+.m-song-rollwrap {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: -75px 0 0 -75px;
+}
+.m-song-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url(../img/disc_default.png) no-repeat;
+  background-size: contain;
+}
+.u-img {
+  width: 100%;
+  vertical-align: middle;
+}
+.m-song-lgour, .m-song-light {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+}
+.m-song-light {
+  background: url(../img/disc_light.png) no-repeat;
+  background-size: contain;
+}
+.m-song-plybtn {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 10;
+  background: url(../img/play.png) 0 0 no-repeat;
+  background-size: contain;
+}
+.m-song-clickarea {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 52px;
+  z-index: 10;
+}
+.m-song-info {
+  padding: 0 35px;
+  margin-top: 25px;
+}
+.m-song-h2 {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.1;
+  color: #fefefe;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.m-song-gap {
+  margin: 0 4px;
+}
+.m-song-autr {
+  font-size: 13px;
+  color: hsla(0,0%,100%,.6);
+}
+.m-giude, .m-link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.m-giude {
+  height: 36px;
+  padding-top: 10px;
+}
+.m-giude .arr {
+  display: block;
+  width: 17px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 17px auto;
+  background-image: url(../img/slider.png);
+  background-position: 0 0;
+}
+.m-giude .arr.ani {
+  animation: shining 1.2s steps(1) infinite;
+}
+@keyframes shining{
+  0% {background-position:0 0}
+  15% {background-position:0 -12px}
+  30% {background-position:0 -24px}
+  45% {background-position:0 -36px}
+  60% {background-position:0 -48px}
+  75% {background-position:0 -60px}
+  90% {background-position:0 -72px}
+  to {background-position:0 -84px}
+}
+.m-moreLists {
+  margin-top: 40px;
+  padding-bottom: 30px;
+  line-height: 1.6;
+}
+.m-moreLists .u-title,
+.m-moreSongs .u-title {
+  position: relative;
+  padding-left: 10px;
+  line-height: 18px;
+  color: #fff;
+  font-size: 16px;
+}
+.m-moreLists .u-title:after,
+.m-moreSongs .u-title:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 2px;
+  height: 16px;
+  background: #d33a31;
+}
+.m-moreLists ul {
+  margin-top: 12px;
+  display: flex;
+}
+.m-moreLists li {
+  flex: 1;
+  width: 1%;
+  margin-left: 3px;
+}
+.m-moreLists li:first-child {
+  margin-left: 0;
+}
+.u-cover {
+  position: relative;
+  background: url(../img/white_dist.png) no-repeat;
+  background-position: 50%;
+  background-size: 100% auto;
+}
+.m-moreLists .cover {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+.m-moreLists li img {
+  display: block;
+  width: 100%;
+}
+.u-cover img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.m-moreLists .cover>img {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+.m-moreLists .sgply_cut {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  z-index: 3;
+  padding-left: 13px;
+  color: #fff;
+  font-size: 12px;
+  background-position: 0px 3px;
+  background-repeat: no-repeat;
+  background-size: 11px 10px;
+}
+.m-moreLists .tit {
+  margin: 2px 0 -1px;
+  padding: 0 6px;
+  color: #fff;
+  font-size: 13px;
+}
+.m-moreLists .sub {
+  position: relative;
+  padding: 0 19px 0 6px;
+  color: hsla(0,0%,100%,.6);
+  font-size: 12px;
+  height: 20px;
+  overflow: hidden;
+}
+.m-moreLists .author {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  position: relative;
+}
+@media only screen and (device-height: 812px) and (device-width: 375px) {
+  .m-moreLists {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .m-song-h2 {
+    font-size: 18px;
+  }
+  .m-song-autr, .m-song-pure {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 360px) {
+  .m-song-wrap {
+    padding-top: 70px;
+  }
+  .m-song-disc {
+    width: 296px;
+    height: 296px;
+  }
+  .m-song-disc:after {
+    width: 96px;
+    height: 137px;
+    top: -70px;
+    left: 133px;
+    background-image: url(../img/needle-ip6.png);
+  }
+  .m-song-rollwrap {
+    width: 184px;
+    height: 184px;
+    margin: -92px 0 0 -92px;
+  }
+  .m-song-light {
+    background-image: url(../img/disc_light-ip6.png);
+  }
+  .m-song-plybtn {
+    width: 56px;
+    height: 56px;
+  }
+  .m-song-info {
+    margin-top: 25px;
+  }
+}
+@media only screen and (device-height: 812px) and (device-width: 375px) {
+  .m-scroll_wrapper {
+    bottom: 94px;
+  }
 }

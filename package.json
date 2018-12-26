@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "better-scroll": "^1.13.2",
     "big-integer": "^1.6.36",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
