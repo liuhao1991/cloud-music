@@ -12,11 +12,10 @@ const CommentList = props => {
       }
       <Comments comments={ comments } title={ '最新评论' + total } />
     </div>
-  )
+  );
 }
 
-const Comment = props => {
-  const { cmt } = props;
+const Comment = ({ cmt }) => {
   const time = new Date(cmt.time);
   return (
     <div className="cmt_item">
@@ -67,7 +66,7 @@ const Comment = props => {
         }
       </div>
     </div>
-  )
+  );
 }
 
 const Alike = _ => {
@@ -78,13 +77,12 @@ const Alike = _ => {
         </path>
       </svg>
     </i>
-  )
+  );
 }
 
-const Comments = props => {
-  const { title, comments } = props;
+const Comments = ({ title, comments }) => {
   const list = comments.map(v => {
-    return <Comment cmt={v } key={ v.commentId } />
+    return <Comment cmt={v } key={ v.commentId } />;
   })
   return (
     <div className="m-comments">
@@ -93,7 +91,11 @@ const Comments = props => {
         { list }
       </div>
     </div>
-  )
+  );
+}
+
+export {
+  Comment
 }
 
 export default CommentList;

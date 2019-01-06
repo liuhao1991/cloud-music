@@ -49,7 +49,7 @@ class SearchInput extends Component {
           </figure>
         </div>
       </form>
-    )
+    );
   }
 }
 

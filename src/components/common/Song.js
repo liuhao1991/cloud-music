@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/css/Song.css';
 
-const Song = (props) => {
-  const { id, name, alia, index, info, showIndex, highlight } = props.song
+const Song = ({ song }) => {
+  const { id, name, alia, index, info, showIndex, highlight } = song
   const order = highlight && index < 9 ? '0' + (index + 1) : index + 1
   return (
     <Link className="sgitem" to={ '/song/' + id }>
@@ -34,7 +34,7 @@ const Song = (props) => {
         </div>
       </div>
     </Link>
-  )
+  );
 }
 
 export default Song;

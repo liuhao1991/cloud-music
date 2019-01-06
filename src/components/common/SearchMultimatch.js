@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { picUrlFmt } from '../../assets/js/help';
 import '../../assets/css/SearchMultimatch.css';
 
 const SearchMultimatch = ({ multimatch }) => {
@@ -56,7 +57,7 @@ const Album = ({ album }) => {
         </div>
       </Link>
     </li>
-  )
+  );
 }
 
 const Artist = ({ artist }) => {
@@ -82,7 +83,7 @@ const Artist = ({ artist }) => {
         </div>
       </Link>
     </li>
-  )
+  );
 }
 
 const MusicVideo = ({mv}) => {
@@ -113,14 +114,7 @@ const MusicVideo = ({mv}) => {
         </div>
       </Link>
     </li>
-  )
-}
-
-const picUrlFmt = (picUrl, suffix) => {
-  let picUrlArr = picUrl.split('.');
-  picUrlArr.pop();
-  let fmtPicUrl = picUrlArr.join('.') + suffix;
-  return fmtPicUrl;
+  );
 }
 
 export default SearchMultimatch;

@@ -45,7 +45,7 @@ class SearchSonglistContainer extends Component {
   render () {
     const { search } = this.props;
     const { songs } = search;
-    return <SearchSonglist songs={ songs.songs } />
+    return <SearchSonglist songs={ songs.songs } />;
   }
 }
 

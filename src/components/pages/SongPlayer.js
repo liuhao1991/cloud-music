@@ -1,15 +1,59 @@
 import React, { Component } from 'react';
 import BScroll from 'better-scroll';
+import MusicComments from '../common/MusicComments';
+import SimiPlaylist from '../common/SimiPlaylist';
+import SimiSong from '../common/SimiSong';
 import logo from '../../assets/img/logosong.svg';
 import '../../assets/css/SongPlayer.css';
+import http from '../../js/http';
 
 class SongPlayer extends Component {
 
   state = {
     wrapperHeight: 0,
+    comments: {},
+    simiPlaylist: {},
+    simiSong: {}
+  }
+
+  fetchComments () {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/comments', {params: data})
+      .then(res => {
+        this.setState({
+          comments: res.data
+        })
+      })
+  }
+
+  fetchSimiPlaylist () {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/simiPlaylist', {params: data})
+      .then(res => {
+        this.setState({
+          simiPlaylist: res.data
+        })
+      })
+  }
+
+  fetchSimiSong () {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/simiSong', {params: data})
+      .then(res => {
+        this.setState({
+          simiSong: res.data
+        })
+      })
   }
 
   componentDidMount () {
+    this.fetchComments();
+    this.fetchSimiPlaylist();
+    this.fetchSimiSong();
+
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;
     this.setState({
@@ -18,8 +62,15 @@ class SongPlayer extends Component {
     new BScroll(wrapper);
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.match.params.id != this.props.match.params.id) {
+  //     this.fetchComments();
+  //     this.fetchSimiPlaylist();
+  //     this.fetchSimiSong();
+  //   } 
+  // }
+
   render () {
-    const id = this.props.match.params.id;
     return (
       <div className="song-player">
         <div className="m-song-bg"></div>
@@ -57,49 +108,34 @@ class SongPlayer extends Component {
               </div>
             </div>
             
-            <div className="m-moreLists">
-              <h2 className="u-title">包含这首歌的歌单</h2>
-              <ul>
-                <li>
-                  <figure className="cover u-cover">
-                    <img alt="" src="https://p1.music.126.net/G7GgOHBdH1rUIIW3hot6Kw==/109951163609743240.webp?imageView&amp;thumbnail=369x0&amp;quality=75&amp;tostatic=0&amp;type=webp" />
-                    <span className="u-earp sgply_cut">2283.1万</span>
-                  </figure>
-                  <h3 className="tit f-fs13 f-thide">那些喜欢到循环播放的歌</h3>
-                  <p className="sub">
-                    <span className="author">by 暧酱酱</span>
-                  </p>
-                </li>
-                <li>
-                  <figure className="cover u-cover">
-                    <img alt="" src="https://p1.music.126.net/G7GgOHBdH1rUIIW3hot6Kw==/109951163609743240.webp?imageView&amp;thumbnail=369x0&amp;quality=75&amp;tostatic=0&amp;type=webp" />
-                    <span className="u-earp sgply_cut">2283.1万</span>
-                  </figure>
-                  <h3 className="tit f-fs13 f-thide">那些喜欢到循环播放的歌</h3>
-                  <p className="sub">
-                    <span className="author">by 暧酱酱</span>
-                  </p>
-                </li>
-                <li>
-                  <figure className="cover u-cover">
-                    <img alt="" src="https://p1.music.126.net/G7GgOHBdH1rUIIW3hot6Kw==/109951163609743240.webp?imageView&amp;thumbnail=369x0&amp;quality=75&amp;tostatic=0&amp;type=webp" />
-                    <span className="u-earp sgply_cut">2283.1万</span>
-                  </figure>
-                  <h3 className="tit f-fs13 f-thide">那些喜欢到循环播放的歌</h3>
-                  <p className="sub">
-                    <span className="author">by 暧酱酱</span>
-                  </p>
-                </li>
-              </ul>
-            </div>
+            {
+              this.state.simiPlaylist.playlists && this.state.simiPlaylist.playlists.length
+              ? <SimiPlaylist playlists={ this.state.simiPlaylist.playlists }/>
+              : ''
+            }
+
+            {
+              this.state.simiSong.songs && this.state.simiSong.songs.length
+              ? <SimiSong songs={ this.state.simiSong.songs }/>
+              : ''
+            }
+
+            {
+              this.state.comments.hotComments
+              ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments }/>
+              : ''
+            }
             
-            <div className="m-moreSongs">
-              <h2 className="u-title">喜欢这首歌的人也听</h2>
-            </div>
+          </div>
+        </div>
+        <div className="u-ft">
+          <div className="footer-wrap">
+            <span className="u-btn u-btn-hollow u-btn-red">打 开</span>
+            <span className="u-btn u-btn-red">下 载</span>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

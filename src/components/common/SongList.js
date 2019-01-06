@@ -20,14 +20,14 @@ const SongList = (props) => {
       id,
       showIndex
     };
-    return <Song song={ songInfo } key={ id }/>
+    return <Song song={ songInfo } key={ id }/>;
   });
 
   return (
     <div>
       { list }
     </div>
-  )
+  );
 }
 
 export default SongList;

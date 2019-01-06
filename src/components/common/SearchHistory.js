@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../assets/css/SearchHistory.css';
 
-const SearchHistory = (props) => {
-  const { inputList, deleteHistory, handleSubmit } = props;
+const SearchHistory = ({ inputList, deleteHistory, handleSubmit }) => {
   const list = inputList.slice(0, 10).map((v, i) => {
-    return <HistoryItem key={ i } name={ v } index={ i } deleteHistory={ deleteHistory } handleSubmit={ handleSubmit }/>
+    return <HistoryItem key={ i } name={ v } index={ i } deleteHistory={ deleteHistory } handleSubmit={ handleSubmit }/>;
   })
   return (
     <div className="m-history">
@@ -12,13 +11,11 @@ const SearchHistory = (props) => {
         { list }
       </ul>
     </div>
-  )
+  );
 }
 
 
-const HistoryItem = (props) => {
-  const { name, index, deleteHistory, handleSubmit } = props;
-
+const HistoryItem = ({ name, index, deleteHistory, handleSubmit }) => {
   return (
     <li className="history-item">
       <i className="u-svg u-svg-histy"></i>
@@ -31,7 +28,7 @@ const HistoryItem = (props) => {
         </figure>
       </div>
     </li>
-  )
+  );
 }
 
 export default SearchHistory;

@@ -41,27 +41,27 @@ class Playlist extends Component {
     this.fetchPlaylist();
     this.fetchComments();
   }
-render () {
-  return (
-    <div className="cmt-list-wrapper">
-      {
-        Object.keys(this.state.playlist).length
-        ? <div>
-            <PlaylistBanner playlist={ this.state.playlist }/>
-            { this.state.playlist.description
-            ? <PlaylistIntro playlist={ this.state.playlist } />
-            : '' }
-            <PylistList playlist={ this.state.playlist } />
-          </div>
-        : <Loading />
-      }
-      {
-        Object.keys(this.state.comments).length
-        ? <CommentList comments={ this.state.comments }/>
-        : ''
-      }
+  render () {
+    return (
+      <div className="cmt-list-wrapper">
+        {
+          Object.keys(this.state.playlist).length
+          ? <div>
+              <PlaylistBanner playlist={ this.state.playlist }/>
+              { this.state.playlist.description
+              ? <PlaylistIntro playlist={ this.state.playlist } />
+              : '' }
+              <PylistList playlist={ this.state.playlist } />
+            </div>
+          : <Loading />
+        }
+        {
+          Object.keys(this.state.comments).length
+          ? <CommentList comments={ this.state.comments }/>
+          : ''
+        }
       </div>
-    )
+    );
   }
 }
 

@@ -2,18 +2,17 @@ import React from 'react';
 import Song from '../common/Song';
 import '../../assets/css/PylistList.css';
 
-const PylistList = props => {
-  const { tracks } = props.playlist;
+const PylistList = ({ playlist }) => {
+  const { tracks } = playlist;
   return (
     <div className="pylist-list">
       <div className="u-smtitle">歌曲列表</div>
       <SongList songs={ tracks } />
     </div>
-  )
+  );
 }
 
-const SongList = props => {
-  const { songs } = props;
+const SongList = ({ songs }) => {
   const list = songs.map((item, index) => {
     const id = item.id;
     const name = item.name;
@@ -33,13 +32,13 @@ const SongList = props => {
       showIndex,
       highlight
     };
-    return <Song song={ songInfo } key={ id } />
+    return <Song song={ songInfo } key={ id } />;
   })
   return (
     <div>
       { list }
     </div>
-  )
+  );
 }
 
 export default PylistList;

@@ -11,6 +11,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  box-sizing: content-box;
 }
 .m-comments .cmt_item .cmt_head {
   height: 35px;

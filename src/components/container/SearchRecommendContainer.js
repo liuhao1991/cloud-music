@@ -12,7 +12,7 @@ const SearchRecommendContainer = props => {
     searchSongs({text});
     searchMultimatch(text);
   }
-	return <SearchRecommend input={ input } recom={ recom } handleSubmit={ handleSubmit }/>
+	return <SearchRecommend input={ input } recom={ recom } handleSubmit={ handleSubmit }/>;
 }
 
 const mapStateToProps = state => {

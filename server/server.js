@@ -152,6 +152,54 @@ apiRoutes.get('/matchsongs', function(req, res) {
     })
 });
 
+apiRoutes.get('/music/comments', function(req, res) {
+  const data = {
+    rid: req.query.id,
+    limit: req.query.limit || 20,
+    offset: req.query.offset || 0
+  };
+  const params = crypto(data);
+  http.post(`v1/resource/comments/R_SO_4_${req.query.id}`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
+apiRoutes.get('/music/simiPlaylist', function(req, res) {
+  const data = {
+    songid: req.query.id,
+    limit: req.query.limit || 20,
+    offset: req.query.offset || 0
+  };
+  const params = crypto(data);
+  http.post(`discovery/simiPlaylist`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
+apiRoutes.get('/music/simiSong', function(req, res) {
+  const data = {
+    songid: req.query.id,
+    limit: req.query.limit || 50,
+    offset: req.query.offset || 0
+  };
+  const params = crypto(data);
+  http.post(`discovery/simiSong`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+});
+
 app.use('/api', apiRoutes);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

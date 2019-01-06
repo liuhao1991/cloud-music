@@ -20,16 +20,16 @@ class Search extends Component {
         <SearchInputContainer />
         <RenderResult searched={ searched } multimatch={ multimatch } songs={ songs } input={ input } focus={ focus }/>
       </div>
-    )
+    );
   }
 }
 
-const RenderResult = ({searched, multimatch, songs, input, focus}) => {
+const RenderResult = ({ searched, multimatch, songs, input, focus }) => {
   if (!searched && input !== '') {
     if (!focus) { // when SearchInput is onBlur
-      return <Loading />
+      return <Loading />;
     } else { // when SearchInput is onFocus
-      return <SearchRecommendContainer />
+      return <SearchRecommendContainer />;
     }
   }
   
@@ -43,9 +43,9 @@ const RenderResult = ({searched, multimatch, songs, input, focus}) => {
           : <div style={ styles.noresult }>暂无搜索结果</div>
         }
       </div>
-    )
+    );
   }
-  return <SearchDefaultContainer />
+  return <SearchDefaultContainer />;
 }
 
 const styles = {

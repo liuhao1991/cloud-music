@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { playCount } from '../../assets/js/help';
 import '../../assets/css/RecommendItem.css';
 
-const playCount = (count) => {
-  return Number((count / 10000).toFixed(1)) + '万';
-}
-
-const RecommendItem = (props) => {
-  const { item } = props;
+const RecommendItem = ({ item }) => {
   return (
     <Link className="recommend-item" to={ '/playlist/' + item.id }>
       <div className="recommend-img">
@@ -20,19 +16,18 @@ const RecommendItem = (props) => {
         { item.name }
       </div>
     </Link>
-  )
+  );
 }
 
-const RecommendList = (props) => {
-  const { playlist } = props;
+const RecommendList = ({ playlist }) => {
   const list = playlist.map(item => {
-    return <RecommendItem item={ item } key={ item.id } />
+    return <RecommendItem item={ item } key={ item.id } />;
   });
   return (
     <div style={ styles.recommendList }>
       { list }
     </div>
-  )
+  );
 }
 
 const styles = {

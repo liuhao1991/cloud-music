@@ -1,20 +1,18 @@
 import React from 'react';
 import '../../assets/css/SearchHotItem.css';
 
-const SearchHotItem = (props) => {
-	const { first } = props.item;
-	const { handleSubmit } = props;
+const SearchHotItem = ({ item, handleSubmit }) => {
+	const { first } = item;
 	return (
-		<div className="hot-search-item" onClick={() => handleSubmit(first) }>
+		<div className="hot-search-item" onClick={() => handleSubmit(first) }>;
 			{ first }
 		</div>
-	)
+	);
 }
 
-const SearchHotItems = (props) => {
-	const { hotitems, inputSearch, handleSubmit } = props;
+const SearchHotItems = ({ hotitems, inputSearch, handleSubmit }) => {
 	const hotList = hotitems.map((v, i) => {
-		return <SearchHotItem item={ v } key={ i } inputSearch={ inputSearch } handleSubmit={ handleSubmit } />
+		return <SearchHotItem item={ v } key={ i } inputSearch={ inputSearch } handleSubmit={ handleSubmit } />;
 	});
 	return (
 		<div className="hot-search-list">
@@ -23,7 +21,7 @@ const SearchHotItems = (props) => {
 				{ hotList }
 			</div>
 		</div>
-	)
+	);
 }
 
 export default SearchHotItems;

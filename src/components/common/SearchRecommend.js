@@ -13,7 +13,7 @@ const SearchRecommend = ({ input, recom, handleSubmit }) => {
         : ''
       }
     </div>
-  )
+  );
 }
 
 const Recomitem = ({ recom, handleSubmit }) => {

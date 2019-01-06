@@ -34,7 +34,7 @@ class Recommend extends Component {
           <Footer />
         </div>
       </div>
-    )
+    );
   }
 }
 

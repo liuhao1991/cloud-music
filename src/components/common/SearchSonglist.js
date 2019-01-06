@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Song from './Song';
 
 class SearchSonglist extends Component {
-
   render () {
     const { songs } = this.props;
     const list = songs.map((item, index) => {
@@ -21,13 +20,13 @@ class SearchSonglist extends Component {
         id,
         showIndex
       };
-      return <Song song={ songInfo } key={ index }/>
+      return <Song song={ songInfo } key={ index }/>;
     });
     return (
       <div className="m-songlist">
         { list }
       </div>
-    )
+    );
   }
 }
 

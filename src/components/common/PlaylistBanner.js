@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { playCount as count }  from '../../assets/js/help';
 import '../../assets/css/PlaylistBanner.css';
 
-const PlaylistBanner = props => {
-  const { coverImgUrl, playCount, creator, name } = props.playlist;
+const PlaylistBanner = ({ playlist }) => {
+  const { coverImgUrl, playCount, creator, name } = playlist;
   return (
     <div className="u-plhead pylst_header">
       <div className="plhead_bg" style={{ backgroundImage: 'url("' + coverImgUrl +'")' }}></div>
@@ -11,7 +12,7 @@ const PlaylistBanner = props => {
         <div className="plhead_fl lsthd_fl">
           <img className="u-img" alt="" src={ coverImgUrl } />
           <span className="lsthd_icon">歌单</span>
-          <i className="u-earp lsthd_num">{ playAcount(playCount) }</i>
+          <i className="u-earp lsthd_num">{ count(playCount) }</i>
         </div>
         <div className="plhead_fr">
           <h2 className="f-thide2 f-brk lsthd_title">{ name }</h2>
@@ -27,11 +28,7 @@ const PlaylistBanner = props => {
         </div>
       </div>
     </div>
-  )
-}
-
-const playAcount = (count) => {
-  return Number((count / 10000).toFixed(1)) + '万';
+  );
 }
 
 export default PlaylistBanner;

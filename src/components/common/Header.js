@@ -12,9 +12,9 @@ class Header extends Component {
           <Topbar></Topbar>
           <Tabbar></Tabbar>
         </div>
-      )
+      );
     }
-    return ''
+    return '';
   }
 }
 
@@ -26,7 +26,7 @@ const Topbar = () => {
       </div>
       <div className="download">下载APP</div>
     </div>
-  )
+  );
 }
 
 const Tabbar = () => {
@@ -42,7 +42,7 @@ const Tabbar = () => {
         <NavLink exact className="tab-bar-text" activeClassName="active" to='/search'>搜索</NavLink>
       </div>
     </div>
-  )
+  );
 }
 
 export default withRouter(Header);

@@ -23,7 +23,7 @@ class SearchHistoryContainer extends Component {
     }
     return (
       <SearchHistory inputList={ inputList } handleSubmit={ handleSubmit } deleteHistory={ deleteHistory }/>
-    )
+    );
   }
 }
 

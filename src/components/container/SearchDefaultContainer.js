@@ -8,7 +8,7 @@ const SearchDefaultContainer = props => {
       <SearchHotItemsContainer />
       <SearchHistoryContainer />
     </div>
-  )
+  );
 }
 
 export default SearchDefaultContainer;

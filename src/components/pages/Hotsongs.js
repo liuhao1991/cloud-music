@@ -28,7 +28,7 @@ class Hotsongs extends Component {
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -44,7 +44,7 @@ const Banner = (props) => {
         <div className="hottime">更新日期：{ updateTime ? (m + '月' + d + '日') : '' }</div>
       </div>
     </div>
-  )
+  );
 }
 
 const SongList = (props) => {
@@ -70,7 +70,7 @@ const SongList = (props) => {
         showIndex,
         highlight
       };
-      return <Song song={ songInfo } key={ id } />
+      return <Song song={ songInfo } key={ id } />;
     })
   } else {
     songTracks = <Loading />
@@ -80,7 +80,7 @@ const SongList = (props) => {
     <div className="sglist">
       { songTracks }
     </div>
-  )
+  );
 }
 
 function mapStateToProps(state) {

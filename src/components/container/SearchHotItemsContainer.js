@@ -23,7 +23,7 @@ class SearchHotItemsContainer extends Component {
     }
     return (
       <SearchHotItems handleSubmit={ handleSubmit } inputSearch={ inputSearch } hotitems={ items }/>
-    )
+    );
   }
 }
 
