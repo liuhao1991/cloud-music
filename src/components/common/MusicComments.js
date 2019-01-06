@@ -1,16 +1,22 @@
 import React from 'react';
 import { Comment} from '../common/CommentList';
 
-const MusicComments = ({ comments, hotComments }) => {
-  const commentList = (hotComments || comments).map(v => {
-    return <Comment cmt={ v } key={ v.commentId }/>;
+const MusicComments = ({ comments, hotComments, total }) => {
+  const flag = hotComments.length === 0;
+
+  const actualComments = flag ? comments : hotComments;
+
+  const commentList = actualComments.map((v, i) => {
+    if (i < 5) {
+      return <Comment cmt={ v } key={ v.commentId }/>;
+    }
   });
   return (
     <div className="m-song_newcomm">
       <div className="m-song_newcomm_clip">
         <div className="m-talk m-talk-imm">
           <div className="m-comments m-comments-black">
-            <h4 className="cmt_title">精彩评论</h4>
+            <h4 className="cmt_title">{ flag ? '最新评论(' + total  + ')' : '精彩评论' }</h4>
             <div className="cmt_list">
               { commentList }
             </div>

@@ -122,7 +122,7 @@ class SongPlayer extends Component {
 
             {
               this.state.comments.hotComments
-              ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments }/>
+              ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments } total={ this.state.comments.total }/>
               : ''
             }
             
