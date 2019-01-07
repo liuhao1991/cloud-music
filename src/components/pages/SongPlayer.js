@@ -13,40 +13,55 @@ class SongPlayer extends Component {
     wrapperHeight: 0,
     comments: {},
     simiPlaylist: {},
-    simiSong: {}
+    simiSong: {},
+    playing: true
   }
 
-  fetchComments () {
+  fetchComments = () => {
     const id = this.props.match.params.id;
     const data = { id };
     http.get('http://localhost:3001/api/music/comments', {params: data})
       .then(res => {
         this.setState({
           comments: res.data
-        })
+        });
       })
   }
 
-  fetchSimiPlaylist () {
+  fetchSimiPlaylist = () => {
     const id = this.props.match.params.id;
     const data = { id };
     http.get('http://localhost:3001/api/music/simiPlaylist', {params: data})
       .then(res => {
         this.setState({
           simiPlaylist: res.data
-        })
+        });
       })
   }
 
-  fetchSimiSong () {
+  fetchSimiSong = () => {
     const id = this.props.match.params.id;
     const data = { id };
     http.get('http://localhost:3001/api/music/simiSong', {params: data})
       .then(res => {
         this.setState({
           simiSong: res.data
-        })
+        });
       })
+  }
+
+  handlePlay = () => {
+    let wrapper = document.querySelector('.m-song-turn');
+    let style = window.getComputedStyle(wrapper, null);
+    let tr = style.getPropertyValue("-webkit-transform") ||
+      style.getPropertyValue("-moz-transform") ||
+      style.getPropertyValue("-ms-transform") ||
+      style.getPropertyValue("-o-transform") ||
+      style.getPropertyValue("transform");
+    wrapper.style.transform = tr;
+    this.setState(prevState => ({
+      playing: !prevState.playing
+    }));
   }
 
   componentDidMount () {
@@ -81,7 +96,7 @@ class SongPlayer extends Component {
                 <img className="u-svg u-svg-logosong" src={ logo } alt="logo" />
               </div>
               <div className="m-song-wrap">
-                <div className="m-song-disc">
+                <div className={ `m-song-disc ${this.state.playing ? ' ': 'playing'}` }>
                   <div className="m-song-turn">
                     <div className="m-song-rollwrap">
                       <div className="m-song-img">
@@ -94,7 +109,7 @@ class SongPlayer extends Component {
                   </div>
                   <div className="m-song-plybtn"></div>
                 </div>
-                <div className="m-song-clickarea"></div>
+                <div className="m-song-clickarea" onClick={ this.handlePlay }></div>
               </div>
               <div className="m-song-info">
                 <h2 className="m-song-h2">

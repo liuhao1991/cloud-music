@@ -11,7 +11,7 @@
 .m-song-bg {
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  /* background-size: auto 100%; */
   transform: scale(1.5);
   transform-origin: center top;
   position: fixed;
@@ -45,13 +45,11 @@
 }
 
 .m-scroll_scroller {
-  /* height: 1500px; */
   position: absolute;
   left: 0;
   top: 0;
   min-height: 100%;
   width: 100%;
-  /*background:linear-gradient(orangered,orange);*/
 }
 .m-song_newfst {
   position: relative;
@@ -96,10 +94,23 @@
   height: 122px;
   background: url(../img/needle.png) no-repeat;
   background-size: contain;
+  transform: rotate(-25deg);
+  transform-origin: left top;
+  transition: all 0.5s;
+}
+.m-song-disc.playing:after {
+  transform: rotate(0deg);
 }
 .m-song-turn {
   height: 100%;
   width: 100%;
+}
+.m-song-disc.playing .m-song-turn {
+  animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+  from { transform: rotate(0deg) }
+  to {transform: rotate(359deg) }
 }
 .m-song-turn:before {
   content: " ";
@@ -121,6 +132,7 @@
   z-index: 1;
   margin: -75px 0 0 -75px;
 }
+
 .m-song-img {
   width: 100%;
   height: 100%;
@@ -156,6 +168,9 @@
   z-index: 10;
   background: url(../img/play.png) 0 0 no-repeat;
   background-size: contain;
+}
+.m-song-disc.playing .m-song-plybtn  {
+  display: none;
 }
 .m-song-clickarea {
   position: absolute;
