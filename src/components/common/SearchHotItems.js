@@ -4,7 +4,7 @@ import '../../assets/css/SearchHotItem.css';
 const SearchHotItem = ({ item, handleSubmit }) => {
 	const { first } = item;
 	return (
-		<div className="hot-search-item" onClick={() => handleSubmit(first) }>;
+		<div className="hot-search-item" onClick={() => handleSubmit(first) }>
 			{ first }
 		</div>
 	);

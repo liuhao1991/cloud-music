@@ -51,17 +51,26 @@ class SongPlayer extends Component {
   }
 
   handlePlay = () => {
-    let wrapper = document.querySelector('.m-song-turn');
-    let style = window.getComputedStyle(wrapper, null);
-    let tr = style.getPropertyValue("-webkit-transform") ||
-      style.getPropertyValue("-moz-transform") ||
-      style.getPropertyValue("-ms-transform") ||
-      style.getPropertyValue("-o-transform") ||
-      style.getPropertyValue("transform");
-    wrapper.style.transform = tr;
+    let imageWrapper = document.querySelector('.m-song-rollwrap');
+    let image = document.querySelector('.m-song-img');
+    let wrapperTransform = this.getTransform(imageWrapper);
+    let innerTransform = this.getTransform(image);
+    document.querySelector('.m-song-rollwrap').style.transform = wrapperTransform === 'none' ? innerTransform : innerTransform.concat(' ', wrapperTransform)
+    document.querySelector('.m-song-lgour').style.transform = wrapperTransform === 'none' ? innerTransform : innerTransform.concat(' ', wrapperTransform)
+    
     this.setState(prevState => ({
       playing: !prevState.playing
     }));
+  }
+
+  getTransform = (wrapper) => {
+    let wrapperStyle = getComputedStyle(wrapper, null);
+    let wrapperTransform = wrapperStyle.getPropertyValue("-webkit-transform") ||
+        wrapperStyle.getPropertyValue("-moz-transform") ||
+        wrapperStyle.getPropertyValue("-ms-transform") ||
+        wrapperStyle.getPropertyValue("-o-transform") ||
+        wrapperStyle.getPropertyValue("transform");
+    return wrapperTransform
   }
 
   componentDidMount () {
@@ -99,12 +108,12 @@ class SongPlayer extends Component {
                 <div className={ `m-song-disc ${this.state.playing ? ' ': 'playing'}` }>
                   <div className="m-song-turn">
                     <div className="m-song-rollwrap">
-                      <div className="m-song-img">
+                      <div className={ `m-song-img ${this.state.playing ? ' ': 'spining'}` }>
                         <img className="u-img" alt="music-img" src="http://p1.music.126.net/ggnyubDdMxrhpqYvpZbhEQ==/3302932937412681.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" />
                       </div>
                     </div>
                     <div className="m-song-lgour">
-                      <div className="m-song-light"></div>
+                      <div className={ `m-song-light ${this.state.playing ? ' ': 'spining'}` }></div>
                     </div>
                   </div>
                   <div className="m-song-plybtn"></div>

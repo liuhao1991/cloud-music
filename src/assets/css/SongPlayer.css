@@ -105,12 +105,18 @@
   height: 100%;
   width: 100%;
 }
-.m-song-disc.playing .m-song-turn {
+/* .m-song-turn.spining {
+  animation: rotate 20s linear infinite;
+} */
+.m-song-img.spining {
+  animation: rotate 20s linear infinite;
+}
+.m-song-light.spining {
   animation: rotate 20s linear infinite;
 }
 @keyframes rotate {
   from { transform: rotate(0deg) }
-  to {transform: rotate(359deg) }
+  to { transform: rotate(360deg) }
 }
 .m-song-turn:before {
   content: " ";
