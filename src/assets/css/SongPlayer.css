@@ -96,7 +96,7 @@
   background-size: contain;
   transform: rotate(-25deg);
   transform-origin: left top;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 .m-song-disc.playing:after {
   transform: rotate(0deg);

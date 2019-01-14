@@ -200,6 +200,22 @@ apiRoutes.get('/music/simiSong', function(req, res) {
     })
 });
 
+apiRoutes.get('/music/url', function(req, res) {
+  const data = {
+    ids: '[' + parseInt(req.query.id) + ']',
+    br: parseInt(req.query.br || 999000)
+  };
+  const params = crypto(data);
+  http.post(`song/enhance/player/url`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+});
+
 app.use('/api', apiRoutes);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

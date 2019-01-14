@@ -14,7 +14,23 @@ class SongPlayer extends Component {
     comments: {},
     simiPlaylist: {},
     simiSong: {},
-    playing: true
+    playing: false,
+    url: ''
+  }
+
+  fetchSongUrl = () => {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/url', {params: data})
+      .then(res => {
+        this.setState({
+          url: res.data.data[0].url,
+          playing: true
+        });
+        setTimeout(() => {
+          this.refs.audio.play();
+        }, 500)
+      })
   }
 
   fetchComments = () => {
@@ -61,6 +77,8 @@ class SongPlayer extends Component {
     this.setState(prevState => ({
       playing: !prevState.playing
     }));
+    console.log(this.state.playing)
+    this.state.playing ? this.refs.audio.pause() : this.refs.audio.play();
   }
 
   getTransform = (wrapper) => {
@@ -77,6 +95,7 @@ class SongPlayer extends Component {
     this.fetchComments();
     this.fetchSimiPlaylist();
     this.fetchSimiSong();
+    this.fetchSongUrl();
 
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;
@@ -97,6 +116,7 @@ class SongPlayer extends Component {
   render () {
     return (
       <div className="song-player">
+        <audio ref="audio" src={ this.state.url }></audio>
         <div className="m-song-bg"></div>
         <div className="m-scroll_wrapper">
           <div className="m-scroll_scroller">
@@ -105,15 +125,15 @@ class SongPlayer extends Component {
                 <img className="u-svg u-svg-logosong" src={ logo } alt="logo" />
               </div>
               <div className="m-song-wrap">
-                <div className={ `m-song-disc ${this.state.playing ? ' ': 'playing'}` }>
+                <div className={ `m-song-disc ${this.state.playing ? 'playing': ''}` }>
                   <div className="m-song-turn">
                     <div className="m-song-rollwrap">
-                      <div className={ `m-song-img ${this.state.playing ? ' ': 'spining'}` }>
+                      <div className={ `m-song-img ${this.state.playing ? 'spining': ' '}` }>
                         <img className="u-img" alt="music-img" src="http://p1.music.126.net/ggnyubDdMxrhpqYvpZbhEQ==/3302932937412681.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" />
                       </div>
                     </div>
                     <div className="m-song-lgour">
-                      <div className={ `m-song-light ${this.state.playing ? ' ': 'spining'}` }></div>
+                      <div className={ `m-song-light ${this.state.playing ? 'spining': ''}` }></div>
                     </div>
                   </div>
                   <div className="m-song-plybtn"></div>
@@ -131,19 +151,16 @@ class SongPlayer extends Component {
                 <i className="arr ani"></i>
               </div>
             </div>
-            
             {
               this.state.simiPlaylist.playlists && this.state.simiPlaylist.playlists.length
               ? <SimiPlaylist playlists={ this.state.simiPlaylist.playlists }/>
               : ''
             }
-
             {
               this.state.simiSong.songs && this.state.simiSong.songs.length
               ? <SimiSong songs={ this.state.simiSong.songs }/>
               : ''
             }
-
             {
               this.state.comments.hotComments
               ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments } total={ this.state.comments.total }/>
