@@ -232,14 +232,14 @@
   animation: shining 1.2s steps(1) infinite;
 }
 @keyframes shining{
-  0% {background-position:0 0}
-  15% {background-position:0 -12px}
-  30% {background-position:0 -24px}
-  45% {background-position:0 -36px}
-  60% {background-position:0 -48px}
-  75% {background-position:0 -60px}
-  90% {background-position:0 -72px}
-  to {background-position:0 -84px}
+  0% {background-position: 0 0}
+  15% {background-position: 0 -12px}
+  30% {background-position: 0 -24px}
+  45% {background-position: 0 -36px}
+  60% {background-position: 0 -48px}
+  75% {background-position: 0 -60px}
+  90% {background-position: 0 -72px}
+  to {background-position: 0 -84px}
 }
 .m-moreLists {
   margin-top: 40px;
