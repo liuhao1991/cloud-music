@@ -213,7 +213,24 @@ apiRoutes.get('/music/url', function(req, res) {
     .catch(err => {
       console.log(err)
     })
+});
 
+apiRoutes.get('/music/lyric', function(req, res) {
+  const data = {
+    id: req.query.id,
+    os: 'osx',
+    lv: -1, 
+    kv: -1, 
+    tv: -1
+  };
+  const params = crypto(data);
+  http.post(`song/lyric`, qs.stringify(params))
+    .then(response => {
+      res.json(response.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 });
 
 app.use('/api', apiRoutes);

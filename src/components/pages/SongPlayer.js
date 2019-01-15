@@ -14,6 +14,7 @@ class SongPlayer extends Component {
     comments: {},
     simiPlaylist: {},
     simiSong: {},
+    lyric: {},
     playing: false,
     url: ''
   }
@@ -33,6 +34,17 @@ class SongPlayer extends Component {
       })
   }
 
+  fetchSongLyric = () => {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/lyric', {params: data})
+      .then(res => {
+        this.setState({
+          lyric: res.data
+        });
+      })
+  }
+  
   fetchComments = () => {
     const id = this.props.match.params.id;
     const data = { id };
@@ -77,7 +89,6 @@ class SongPlayer extends Component {
     this.setState(prevState => ({
       playing: !prevState.playing
     }));
-    console.log(this.state.playing)
     this.state.playing ? this.refs.audio.pause() : this.refs.audio.play();
   }
 
@@ -96,6 +107,7 @@ class SongPlayer extends Component {
     this.fetchSimiPlaylist();
     this.fetchSimiSong();
     this.fetchSongUrl();
+    this.fetchSongLyric();
 
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;
@@ -105,15 +117,22 @@ class SongPlayer extends Component {
     new BScroll(wrapper);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.match.params.id != this.props.match.params.id) {
-  //     this.fetchComments();
-  //     this.fetchSimiPlaylist();
-  //     this.fetchSimiSong();
-  //   } 
-  // }
-
   render () {
+    const LyricFmt = () => {
+      if (!this.state.lyric.lrc) {
+        return <div className="m-song-lrc">暂无歌词</div>;
+      }
+      const lrc = this.state.lyric.lrc.lyric ? this.state.lyric.lrc.lyric.split('\n') : [];
+      const tlyric = this.state.lyric.tlyric.lyric ? this.state.lyric.tlyric.lyric.split('\n') : []
+      const str = lrc.map((v, i) => {
+        return <p className="m-song-lritem j-lritem" key={ i }>
+                { tlyric.length 
+                  ? <span><span>{ v }</span><span>{ tlyric[i] }</span></span>
+                  : v }
+              </p>
+      });
+      return <div className="m-song-lrc">{ str }</div>
+    }
     return (
       <div className="song-player">
         <audio ref="audio" src={ this.state.url }></audio>
@@ -146,6 +165,7 @@ class SongPlayer extends Component {
                   <span className="m-song-gap">-</span>
                   <b className="m-song-autr">朱星杰</b>
                 </h2>
+                <LyricFmt />
               </div>
               <div className="m-giude" style={{bottom: '-14px'}}>
                 <i className="arr ani"></i>
@@ -166,7 +186,6 @@ class SongPlayer extends Component {
               ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments } total={ this.state.comments.total }/>
               : ''
             }
-            
           </div>
         </div>
         <div className="u-ft">
