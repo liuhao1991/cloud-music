@@ -6,6 +6,7 @@ import SimiSong from '../common/SimiSong';
 import logo from '../../assets/img/logosong.svg';
 import '../../assets/css/SongPlayer.css';
 import http from '../../js/http';
+import Lyric from 'lyric-parser';
 
 class SongPlayer extends Component {
 
@@ -14,10 +15,15 @@ class SongPlayer extends Component {
     comments: {},
     simiPlaylist: {},
     simiSong: {},
-    lyric: {},
+    lyric: null,
+    tlyric: null,
     playing: false,
-    url: ''
+    url: '',
+    currentLineNum: 0,
+    lyricList: null
   }
+
+  lyricList = null
 
   fetchSongUrl = () => {
     const id = this.props.match.params.id;
@@ -40,8 +46,12 @@ class SongPlayer extends Component {
     http.get('http://localhost:3001/api/music/lyric', {params: data})
       .then(res => {
         this.setState({
-          lyric: res.data
+          lyric: res.data.lrc.lyric ? new Lyric(res.data.lrc.lyric, this.handleLyric) : null,
+          tlyric: res.data.tlyric.lyric ? new Lyric(res.data.tlyric.lyric) : null
         });
+        if (this.state.lyric) {
+          this.state.lyric.play();
+        }
       })
   }
   
@@ -90,6 +100,7 @@ class SongPlayer extends Component {
       playing: !prevState.playing
     }));
     this.state.playing ? this.refs.audio.pause() : this.refs.audio.play();
+    this.state.playing ? this.state.lyric.stop() : this.state.lyric.play();;
   }
 
   getTransform = (wrapper) => {
@@ -108,7 +119,7 @@ class SongPlayer extends Component {
     this.fetchSimiSong();
     this.fetchSongUrl();
     this.fetchSongLyric();
-
+    this.lyricList = new BScroll('.m-lrc-scroll');
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;
     this.setState({
@@ -117,21 +128,36 @@ class SongPlayer extends Component {
     new BScroll(wrapper);
   }
 
+  handleLyric = ({lineNum, txt}) => {
+    this.setState({
+      currentLineNum: lineNum
+    });
+    if (lineNum > 4) {
+      console.log(lineNum * 24);
+      this.lyricList.scrollTo(0, - lineNum * 24, 1000);
+    } else {
+      this.lyricList.scrollTo(0, -100, 1000);
+    }
+  }
+
   render () {
-    const LyricFmt = () => {
-      if (!this.state.lyric.lrc) {
-        return <div className="m-song-lrc">暂无歌词</div>;
+    const LyricLines = () => {
+      if (!this.state.lyric) {
+        return <div className="m-song-iner">暂无歌词</div>;
       }
-      const lrc = this.state.lyric.lrc.lyric ? this.state.lyric.lrc.lyric.split('\n') : [];
-      const tlyric = this.state.lyric.tlyric.lyric ? this.state.lyric.tlyric.lyric.split('\n') : []
-      const str = lrc.map((v, i) => {
-        return <p className="m-song-lritem j-lritem" key={ i }>
-                { tlyric.length 
-                  ? <span><span>{ v }</span><span>{ tlyric[i] }</span></span>
-                  : v }
+      const lines = this.state.lyric.lines
+      const tlyric = this.state.tlyric && this.state.tlyric.lines ? this.state.tlyric.lines : [];
+      const lyricLines = lines.map((v, i) => {
+        return <p className={ `m-song-lritem ${this.state.currentLineNum === i ? 'current' : ''}` } key={ i } >
+                <span>{ v.txt }</span>
+                {
+                  tlyric[i]
+                  ? <span>{ tlyric[i].txt }</span>
+                  : ''
+                }
               </p>
       });
-      return <div className="m-song-lrc">{ str }</div>
+      return <div className="m-song-iner">{ lyricLines }</div>
     }
     return (
       <div className="song-player">
@@ -165,7 +191,11 @@ class SongPlayer extends Component {
                   <span className="m-song-gap">-</span>
                   <b className="m-song-autr">朱星杰</b>
                 </h2>
-                <LyricFmt />
+                <div className="m-song-lrc f-pr">
+                  <div className="m-lrc-scroll" ref="lyricList">
+                    <LyricLines />
+                  </div>
+                </div>
               </div>
               <div className="m-giude" style={{bottom: '-14px'}}>
                 <i className="arr ani"></i>

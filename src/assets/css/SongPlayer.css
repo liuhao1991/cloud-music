@@ -199,6 +199,22 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.m-song-lrc {
+  position: relative;
+  margin-top: 14px;
+}
+.m-lrc-scroll {
+  line-height: 1.5;
+  height: 88px;
+  overflow: hidden;
+}
+.m-song-lritem.current {
+  color: #fff;
+}
+.m-song-lritem span {
+  display: block;
+  text-align: center
+}
 .m-song-gap {
   margin: 0 4px;
 }
