@@ -233,6 +233,17 @@ apiRoutes.get('/music/lyric', function(req, res) {
     })
 });
 
+apiRoutes.get('/music/info', function(req, res) {
+  axios.get(`https://music.163.com/m/song?id=${req.query.id}`)
+    .then(response => {
+      const info = JSON.parse(response.data.match(/\{[^\}]+\}/)[0])
+      res.json(info)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
+
 app.use('/api', apiRoutes);
 
 app.listen(3001, () => console.log('Example app listening on port 3001!'));

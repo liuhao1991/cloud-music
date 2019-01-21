@@ -11,7 +11,7 @@
 .m-song-bg {
   background-position: 50%;
   background-repeat: no-repeat;
-  /* background-size: auto 100%; */
+  background-size: auto 100%;
   transform: scale(1.5);
   transform-origin: center top;
   position: fixed;
@@ -20,11 +20,10 @@
   top: 0;
   height: 100%;
   overflow: hidden;
+  background-color: rgba(0,0,0,0.5);
   z-index: 1;
-  transition: opacity .3s linear;
-  background-image: url(//music.163.com/api/img/blur/3302932937412681);
-  opacity: 1;
 }
+
 .m-song-bg:after {
   content: " ";
   position: absolute;
@@ -208,19 +207,29 @@
   height: 88px;
   overflow: hidden;
 }
+.m-song-lritem {
+  padding-bottom: 8px;
+  color: rgba(255, 255, 255, 0.6);
+}
 .m-song-lritem.current {
-  color: #fff;
+  color: rgba(255, 255, 255, 1);
 }
 .m-song-lritem span {
   display: block;
   text-align: center
+}
+.m-song-inner {
+  position: relative;
+  top: 0px;
+  /* transform: translateY(0px);
+  transition: all 0.3s linear; */
 }
 .m-song-gap {
   margin: 0 4px;
 }
 .m-song-autr {
   font-size: 13px;
-  color: hsla(0,0%,100%,.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 .m-giude, .m-link {
   position: absolute;

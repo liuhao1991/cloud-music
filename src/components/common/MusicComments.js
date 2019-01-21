@@ -6,7 +6,7 @@ const MusicComments = ({ comments, hotComments, total }) => {
 
   const actualComments = flag ? comments : hotComments;
 
-  const firstFiveComments = actualComments.length > 5 ? actualComments.slice(0, 5) : actualComments;
+  const firstFiveComments = actualComments.length > 10 ? actualComments.slice(0, 10) : actualComments;
   const commentList = firstFiveComments.map(v => {
     return <Comment cmt={ v } key={ v.commentId }/>;
   });

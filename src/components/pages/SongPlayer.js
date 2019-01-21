@@ -5,6 +5,7 @@ import SimiPlaylist from '../common/SimiPlaylist';
 import SimiSong from '../common/SimiSong';
 import logo from '../../assets/img/logosong.svg';
 import '../../assets/css/SongPlayer.css';
+import { bgImage, singerName } from  '../../assets/js/help';
 import http from '../../js/http';
 import Lyric from 'lyric-parser';
 
@@ -15,15 +16,15 @@ class SongPlayer extends Component {
     comments: {},
     simiPlaylist: {},
     simiSong: {},
+    info: {},
     lyric: null,
     tlyric: null,
     playing: false,
     url: '',
     currentLineNum: 0,
-    lyricList: null
+    lyricList: null,
+    lyricListTranslateY: 0
   }
-
-  lyricList = null
 
   fetchSongUrl = () => {
     const id = this.props.match.params.id;
@@ -32,11 +33,8 @@ class SongPlayer extends Component {
       .then(res => {
         this.setState({
           url: res.data.data[0].url,
-          playing: true
         });
-        setTimeout(() => {
-          this.refs.audio.play();
-        }, 500)
+        this.initPlay();
       })
   }
 
@@ -46,15 +44,13 @@ class SongPlayer extends Component {
     http.get('http://localhost:3001/api/music/lyric', {params: data})
       .then(res => {
         this.setState({
-          lyric: res.data.lrc.lyric ? new Lyric(res.data.lrc.lyric, this.handleLyric) : null,
-          tlyric: res.data.tlyric.lyric ? new Lyric(res.data.tlyric.lyric) : null
+          lyric: res.data.lrc.lyric ? new Lyric(res.data.lrc.lyric, this.handleLyric) : [],
+          tlyric: res.data.tlyric.lyric ? new Lyric(res.data.tlyric.lyric) : []
         });
-        if (this.state.lyric) {
-          this.state.lyric.play();
-        }
+        this.initPlay();
       })
   }
-  
+
   fetchComments = () => {
     const id = this.props.match.params.id;
     const data = { id };
@@ -87,12 +83,23 @@ class SongPlayer extends Component {
         });
       })
   }
+  fetchSongInfo = () => {
+    const id = this.props.match.params.id;
+    const data = { id };
+    http.get('http://localhost:3001/api/music/info', {params: data})
+      .then(res => {
+        this.setState({
+          info: res.data
+        });
+      })
+  }
 
   handlePlay = () => {
     let imageWrapper = document.querySelector('.m-song-rollwrap');
     let image = document.querySelector('.m-song-img');
     let wrapperTransform = this.getTransform(imageWrapper);
     let innerTransform = this.getTransform(image);
+
     document.querySelector('.m-song-rollwrap').style.transform = wrapperTransform === 'none' ? innerTransform : innerTransform.concat(' ', wrapperTransform)
     document.querySelector('.m-song-lgour').style.transform = wrapperTransform === 'none' ? innerTransform : innerTransform.concat(' ', wrapperTransform)
     
@@ -100,7 +107,17 @@ class SongPlayer extends Component {
       playing: !prevState.playing
     }));
     this.state.playing ? this.refs.audio.pause() : this.refs.audio.play();
-    this.state.playing ? this.state.lyric.stop() : this.state.lyric.play();;
+    this.state.lyric.togglePlay();
+  }
+
+  initPlay = () => {
+    if (this.state.lyric && this.state.url !== '') {
+      this.state.lyric.togglePlay();
+      this.refs.audio.play();
+      this.setState({
+        playing: true
+      });
+    }
   }
 
   getTransform = (wrapper) => {
@@ -113,13 +130,32 @@ class SongPlayer extends Component {
     return wrapperTransform
   }
 
+  handleLyric = ({lineNum}) => {
+    const height = document.querySelectorAll('.m-song-lritem')[lineNum].clientHeight;
+    const { lyricListTranslateY } = this.state
+    this.setState({
+      currentLineNum: lineNum,
+      lyricListTranslateY: lineNum <= 1 ? 0 : lyricListTranslateY + height
+    });
+  }
+
+  handleEnded = () => {
+    this.setState({
+      playing: false,
+      lyricListTranslateY: 0
+    });
+    document.querySelector('.m-song-rollwrap').style.transform = 'none';
+    document.querySelector('.m-song-lgour').style.transform = 'none';
+    this.state.lyric.stop();
+  }
+
   componentDidMount () {
     this.fetchComments();
     this.fetchSimiPlaylist();
     this.fetchSimiSong();
     this.fetchSongUrl();
     this.fetchSongLyric();
-    this.lyricList = new BScroll('.m-lrc-scroll');
+    this.fetchSongInfo();
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;
     this.setState({
@@ -128,22 +164,17 @@ class SongPlayer extends Component {
     new BScroll(wrapper);
   }
 
-  handleLyric = ({lineNum, txt}) => {
-    this.setState({
-      currentLineNum: lineNum
-    });
-    if (lineNum > 4) {
-      console.log(lineNum * 24);
-      this.lyricList.scrollTo(0, - lineNum * 24, 1000);
-    } else {
-      this.lyricList.scrollTo(0, -100, 1000);
-    }
-  }
-
   render () {
     const LyricLines = () => {
-      if (!this.state.lyric) {
-        return <div className="m-song-iner">暂无歌词</div>;
+      if (this.state.lyric === null) {
+        return ''
+      }
+      if (this.state.lyric && this.state.lyric.lines.length === []) {
+        return <div className="m-song-inner">
+          <p className="m-song-lritem">
+            暂无歌词
+          </p>
+        </div>;
       }
       const lines = this.state.lyric.lines
       const tlyric = this.state.tlyric && this.state.tlyric.lines ? this.state.tlyric.lines : [];
@@ -157,12 +188,16 @@ class SongPlayer extends Component {
                 }
               </p>
       });
-      return <div className="m-song-iner">{ lyricLines }</div>
+      return <div className="m-song-inner" style={{transform: 'translateY(-' + this.state.lyricListTranslateY + 'px)'}}>{ lyricLines }</div>
     }
     return (
       <div className="song-player">
-        <audio ref="audio" src={ this.state.url }></audio>
-        <div className="m-song-bg"></div>
+        <audio ref="audio" src={ this.state.url } onEnded={ () => this.handleEnded() }></audio>
+        {
+          this.state.info.images
+          ? <div className="m-song-bg" style={{ backgroundImage: bgImage(this.state.info.images[0]) }}></div>
+          : ''
+        }
         <div className="m-scroll_wrapper">
           <div className="m-scroll_scroller">
             <div className="m-song_newfst" style={{height: this.state.wrapperHeight}}>
@@ -174,7 +209,11 @@ class SongPlayer extends Component {
                   <div className="m-song-turn">
                     <div className="m-song-rollwrap">
                       <div className={ `m-song-img ${this.state.playing ? 'spining': ' '}` }>
-                        <img className="u-img" alt="music-img" src="http://p1.music.126.net/ggnyubDdMxrhpqYvpZbhEQ==/3302932937412681.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" />
+                        {
+                          this.state.info.images
+                          ? <img className="u-img" alt="music-img" src={this.state.info.images[0] + '?imageView&thumbnail=360y360&quality=75&tostatic=0' } />
+                          : ''
+                        }
                       </div>
                     </div>
                     <div className="m-song-lgour">
@@ -187,9 +226,9 @@ class SongPlayer extends Component {
               </div>
               <div className="m-song-info">
                 <h2 className="m-song-h2">
-                  <span className="m-song-sname">圣诞夜</span>
+                  <span className="m-song-sname">{ this.state.info.title ? this.state.info.title : ''}</span>
                   <span className="m-song-gap">-</span>
-                  <b className="m-song-autr">朱星杰</b>
+                  <b className="m-song-autr">{ singerName(this.state.info.description) }</b>
                 </h2>
                 <div className="m-song-lrc f-pr">
                   <div className="m-lrc-scroll" ref="lyricList">
