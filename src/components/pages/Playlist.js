@@ -48,17 +48,16 @@ class Playlist extends Component {
           Object.keys(this.state.playlist).length
           ? <div>
               <PlaylistBanner playlist={ this.state.playlist }/>
-              { this.state.playlist.description
-              ? <PlaylistIntro playlist={ this.state.playlist } />
-              : '' }
+              { this.state.playlist.description &&
+                <PlaylistIntro playlist={ this.state.playlist } />
+              }
               <PylistList playlist={ this.state.playlist } />
             </div>
           : <Loading />
         }
         {
-          Object.keys(this.state.comments).length
-          ? <CommentList comments={ this.state.comments }/>
-          : ''
+          Object.keys(this.state.comments).length > 0 &&
+          <CommentList comments={ this.state.comments } />
         }
       </div>
     );

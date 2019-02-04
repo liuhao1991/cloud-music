@@ -173,7 +173,7 @@ class SongPlayer extends Component {
   render () {
     const LyricLines = () => {
       if (this.state.lyric === null) {
-        return ''
+        return null
       }
       if (this.state.lyric && this.state.lyric.lines.length === []) {
         return <div className="m-song-inner">
@@ -190,7 +190,7 @@ class SongPlayer extends Component {
                 {
                   tlyric[i]
                   ? <span>{ tlyric[i].txt }</span>
-                  : ''
+                  : null
                 }
               </p>
       });
@@ -200,9 +200,8 @@ class SongPlayer extends Component {
       <div className="song-player">
         <audio ref="audio" src={ this.state.url } onEnded={ () => this.handleEnded() }></audio>
         {
-          this.state.info.images
-          ? <div className="m-song-bg" style={{ backgroundImage: bgImage(this.state.info.images[0]) }}></div>
-          : ''
+          this.state.info.images &&
+          <div className="m-song-bg" style={{ backgroundImage: bgImage(this.state.info.images[0]) }}></div>
         }
         <div className="m-scroll_wrapper">
           <div className="m-scroll_scroller">
@@ -216,9 +215,8 @@ class SongPlayer extends Component {
                     <div className="m-song-rollwrap">
                       <div className={ `m-song-img ${this.state.playing ? 'spining': ' '}` }>
                         {
-                          this.state.info.images
-                          ? <img className="u-img" alt="music-img" src={this.state.info.images[0] + '?imageView&thumbnail=360y360&quality=75&tostatic=0' } />
-                          : ''
+                          this.state.info.images &&
+                          <img className="u-img" alt="music-img" src={this.state.info.images[0] + '?imageView&thumbnail=360y360&quality=75&tostatic=0' } />
                         }
                       </div>
                     </div>
@@ -249,17 +247,17 @@ class SongPlayer extends Component {
             {
               this.state.simiPlaylist.playlists && this.state.simiPlaylist.playlists.length
               ? <SimiPlaylist playlists={ this.state.simiPlaylist.playlists }/>
-              : ''
+              : null
             }
             {
               this.state.simiSong.songs && this.state.simiSong.songs.length
               ? <SimiSong songs={ this.state.simiSong.songs }/>
-              : ''
+              : null
             }
             {
               this.state.comments.hotComments
               ? <MusicComments comments={ this.state.comments.comments } hotComments={ this.state.comments.hotComments } total={ this.state.comments.total }/>
-              : ''
+              : null
             }
           </div>
         </div>

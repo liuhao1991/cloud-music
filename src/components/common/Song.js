@@ -8,20 +8,18 @@ const Song = ({ song }) => {
   return (
     <Link className="sgitem" to={ '/song/' + id }>
       {
-        showIndex
-        ? <div className={ `sgfl ${index < 3 && highlight ? 'sgfl-cred' : null}` }>
-            { order }
-          </div>
-        : ''
+        showIndex &&
+        <div className={ `sgfl ${index < 3 && highlight ? 'sgfl-cred' : null}` }>
+          { order }
+        </div>
       }
       <div className="sgfr">
         <div className="sgchfl">
           <div className="sgtl f-thide">
             { name }
             {
-              alia !== ''
-              ? <span className="sgalia">({ alia })</span>
-              : ''
+              alia !== '' &&
+              <span className="sgalia">({ alia })</span>
             }
           </div>
           <div className="sginfo f-thide">

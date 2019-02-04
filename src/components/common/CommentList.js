@@ -6,9 +6,8 @@ const CommentList = props => {
   return (
     <div>
       {
-        hotComments.length
-        ? <Comments comments={ hotComments } title={ '精彩评论' } />
-        : ''
+        hotComments.length &&
+        <Comments comments={ hotComments } title={ '精彩评论' } />
       }
       <Comments comments={ comments } title={ '最新评论' + total } />
     </div>
@@ -43,26 +42,24 @@ const Comment = ({ cmt }) => {
         </div>
         <div className="cmt_content">
           {
-            cmt.beReplied.length
-            ? <span className="cmt_text">
-                回复
-                <Link className="at" to={ `/user/${cmt.beReplied[0].user.userId}` }>{ '@' + cmt.beReplied[0].user.nickname }：</Link>
-              </span>
-            : ''
+            cmt.beReplied.length > 0 &&
+            <span className="cmt_text">
+              回复
+              <Link className="at" to={ `/user/${cmt.beReplied[0].user.userId}` }>{ '@' + cmt.beReplied[0].user.nickname }：</Link>
+            </span>
           }
           <span className="cmt_text">
             { cmt.content }
           </span>
         </div>
         {
-          cmt.beReplied.length
-          ? <div className="cmt_replied">
-              <span className="cmt_replied_user">{ '@' + cmt.beReplied[0].user.nickname }：</span>
-              <span className="cmt_replied_cnt">
-                <span className="cmt_text">{ cmt.beReplied[0].content }</span>
-              </span>
-            </div>
-          : ''
+          cmt.beReplied.length > 0 &&
+          <div className="cmt_replied">
+            <span className="cmt_replied_user">{ '@' + cmt.beReplied[0].user.nickname }：</span>
+            <span className="cmt_replied_cnt">
+              <span className="cmt_text">{ cmt.beReplied[0].content }</span>
+            </span>
+          </div>
         }
       </div>
     </div>

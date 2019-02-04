@@ -5,7 +5,7 @@ import '../../assets/css/SearchMultimatch.css';
 
 const SearchMultimatch = ({ multimatch }) => {
   if (Object.keys(multimatch).length === 0 || multimatch.orders.length === 0) {
-    return ''
+    return null;
   }
   const { orders } = multimatch;
   const matches = orders.map((v, i) => {
@@ -16,7 +16,7 @@ const SearchMultimatch = ({ multimatch }) => {
     } else if (v === 'mv') {
       return <MusicVideo mv={ multimatch[v] } key={ i }/>;
     } else {
-      return '';
+      return null;
     }
   });
   return (

@@ -6,11 +6,10 @@ const SearchRecommend = ({ input, recom, handleSubmit }) => {
     <div className="serarch-recommend">
       <h3 className="serarch-recommend-title f-thide" onClick={ () => handleSubmit(input) }>搜索"{ input }"</h3>
       {
-        recom.allMatch
-        ? <ul>
-            <Recomitem recom={ recom.allMatch } handleSubmit={ handleSubmit }/>
-          </ul>
-        : ''
+        recom.allMatch &&
+        <ul>
+          <Recomitem recom={ recom.allMatch } handleSubmit={ handleSubmit }/>
+        </ul>
       }
     </div>
   );
