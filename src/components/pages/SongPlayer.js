@@ -83,6 +83,7 @@ class SongPlayer extends Component {
         });
       })
   }
+
   fetchSongInfo = () => {
     const id = this.props.match.params.id;
     const data = { id };
@@ -131,6 +132,7 @@ class SongPlayer extends Component {
   }
 
   handleLyric = ({lineNum}) => {
+    console.log(lineNum)
     const height = document.querySelectorAll('.m-song-lritem')[lineNum].clientHeight;
     const { lyricListTranslateY } = this.state
     this.setState({
@@ -162,6 +164,10 @@ class SongPlayer extends Component {
       wrapperHeight: wrapperHeight
     });
     new BScroll(wrapper);
+  }
+
+  componentWillUnmount () {
+    this.state.lyric.stop();
   }
 
   render () {
