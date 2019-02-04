@@ -3,6 +3,7 @@ import _ from 'lodash';
 import '../../assets/css/SearchInput.css';
 
 class SearchInput extends Component {
+  
   handleChangeInput = e => {
     const { inputSearch, searchRecommend } = this.props;
     const value = e.target.value;
