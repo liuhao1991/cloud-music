@@ -29,25 +29,23 @@ class SongPlayer extends Component {
   fetchSongUrl = () => {
     const id = this.props.match.params.id;
     const data = { id };
-    http.get('http://localhost:3001/api/music/url', {params: data})
+    return http.get('http://localhost:3001/api/music/url', {params: data})
       .then(res => {
         this.setState({
           url: res.data.data[0].url,
         });
-        this.initPlay();
       })
   }
 
   fetchSongLyric = () => {
     const id = this.props.match.params.id;
     const data = { id };
-    http.get('http://localhost:3001/api/music/lyric', {params: data})
+    return http.get('http://localhost:3001/api/music/lyric', {params: data})
       .then(res => {
         this.setState({
           lyric: res.data.lrc.lyric ? new Lyric(res.data.lrc.lyric, this.handleLyric) : [],
           tlyric: res.data.tlyric.lyric ? new Lyric(res.data.tlyric.lyric) : []
         });
-        this.initPlay();
       })
   }
 
@@ -132,7 +130,6 @@ class SongPlayer extends Component {
   }
 
   handleLyric = ({lineNum}) => {
-    console.log(lineNum)
     const height = document.querySelectorAll('.m-song-lritem')[lineNum].clientHeight;
     const { lyricListTranslateY } = this.state
     this.setState({
@@ -155,8 +152,10 @@ class SongPlayer extends Component {
     this.fetchComments();
     this.fetchSimiPlaylist();
     this.fetchSimiSong();
-    this.fetchSongUrl();
-    this.fetchSongLyric();
+    Promise.all([this.fetchSongUrl(), this.fetchSongLyric()])
+      .then((res) => {
+        this.initPlay();
+      })
     this.fetchSongInfo();
     let wrapper = document.querySelector('.m-scroll_wrapper');
     const wrapperHeight = wrapper.clientHeight;

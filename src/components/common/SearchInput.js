@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { Component  } from 'react';
+import debounce from 'lodash/debounce';
 import '../../assets/css/SearchInput.css';
 
 class SearchInput extends Component {
-  
+
   handleChangeInput = e => {
     const { inputSearch, searchRecommend } = this.props;
     const value = e.target.value;
     inputSearch(value);
     if (value === '') return;
-    this.searchContentByValue(searchRecommend, value);
+    this.searchContentByValue(searchRecommend, value)
   }
 
-  searchContentByValue = _.debounce((callback, value) => {
+  searchContentByValue = debounce((callback, value) => {
     callback(value);
   }, 500)
 

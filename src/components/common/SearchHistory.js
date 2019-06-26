@@ -3,8 +3,14 @@ import '../../assets/css/SearchHistory.css';
 
 const SearchHistory = ({ inputList, deleteHistory, handleSubmit }) => {
   const list = inputList.slice(0, 10).map((v, i) => {
-    return <HistoryItem key={ i } name={ v } index={ i } deleteHistory={ deleteHistory } handleSubmit={ handleSubmit }/>;
-  })
+    return <HistoryItem
+            key={i}
+            name={v}
+            index={i}
+            deleteHistory={deleteHistory}
+            handleSubmit={handleSubmit}
+          />;
+  });
   return (
     <div className="m-history">
       <ul>
